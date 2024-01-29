@@ -34,10 +34,21 @@ In the following steps, I will outline the creation of a production environment 
 ### Provisioning the Windows Virtual Machine
 
 I've chosen the Windows 11 Pro as this setup simulates a secure and dedicated data storage solution that is likely what an on-premise system within a company would use for this type of database manipluation. Running a Windows 11 VM on my local machine offers several advantages such as being able to access exclusive windows applications and software, and being able to run this software without the need for a seperate physical Windows machine. 
-Being able to run a virtual machine on my laptop is incredibly helpful. __more info__ 
+
+Azure VMs are a type of Infrastructure-as-a-Service (Iaas) which enables the user to create and run virtual machines in the cloud. It is a software emulation of a physical computer sustem that runs on ntop of a hypervisor. A hypervisor is a layer of software allowing multiple VMs to run on a single physical server. 
+
+
+
 
 Here are the steps I followed to create and connect to my VM from my local MacBook Pro:
-`Is this showing as a tag?`
+
+1. A Microsoft Azure Account was created from the local machine's browser.
+2. Within the Microsoft Azure Portal's home page, I navigated to the `Virtual Machines` page > `+ Create` > `Azure Virtual Machine` to start the process.
+4. The following page required the addition of several key pieces of information:
+     1. `Name`: _____Create a name for the virtual machine______. This is normal.
+5. This 
+
+
 In order to set up a Windows Virtual Machine (VM), 
 
 To enable the connection
