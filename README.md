@@ -84,14 +84,23 @@ Firstly, the schema needed to be migrated using ______, which was then followed 
 
 To ensure successful migration, the ____ was checked.
 
+"Azure SQL Database is a fully-managed, Platform-as-a-Service (PaaS) offering within Azure, built on the foundation of Azure SQL Server. Azure SQL Server is a cloud-based implementation of Microsoft SQL Server, a widely-used relational database management system (RDBMS). It provides a fully-managed environment for hosting SQL databases in the cloud, eliminating the need for on-premises hardware and maintenance." - collab nb
+
 The follwing outlines this process in more detail:
 
 ## 3.1. Setting Up Azure SQL Database
 
-1. On your VM, navigate to Azure Data Studio and download the Windows version of `Azure Data Studio`. Install the programme and click `Crete a desctop icon` to be able to access this app quickly.
-2. Launch `Azure Data Studio` and 
+1. In the Azure Portal online, create a resource >
+2. Create server
+3. set firewall rules
 
+<img width="800" alt="Screenshot 2024-02-01 at 14 53 57" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4aa98ed5-d505-4038-a9d4-09f476e76625">
 
+"By default, Azure SQL Database is configured to deny all public connections. To connect to your database from outside of Azure, you will need to enable public access by configuring a firewall rule that allows traffic from your client IP address. To do this, first navigate to your Azure SQL Database in the Azure portal. Click on the Set server firewall tab on the top middle of the screen.
+
+Public network access to a SQL Server instance is controlled by the Public Network Access setting. This setting determines whether traffic from the public internet is allowed to reach your SQL Server instance."
 
 ##
 
+1. On your VM, navigate to Azure Data Studio and download the Windows version of `Azure Data Studio`. Install the programme and click `Crete a desctop icon` to be able to access this app quickly.
+2. Launch `Azure Data Studio` and 
