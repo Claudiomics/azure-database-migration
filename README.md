@@ -68,13 +68,29 @@ What is a production database.
 
 ### 3. Azure SQL Database Migration 
 
-In order to transition a database onto Azure's cloud ecosystem, it needs to be migrated from the on-premise database to an Azure SQL Database, which is a ________.
+Azure SQL Databse is an online databse service that has high availability and disaster recovery capabilities. It provides automated backups to protect data from loss or corruption and minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. The encrypted data uses Transparent data encryption (TDE) which protects against unauthorised access. There are two main compute tiers: Serverless Computer tier is chosen as I don't need to pre-allocate any resources and the database automaticall scales resources up or down based on the workload demand, saving unexpected costs as you only pay for the resources I use.
 
-The folling steps were followed to ensure the database schema and data were transferred successfully using the Azure Data Studio app.
+In order to transition a database onto Azure's cloud ecosystem, it needs to be migrated from the on-premise database to an Azure SQL Database, which serves as a target for migrating my on-premise database.
+
+TTo achieve this, the powerful and user-friendly database managemet tool developed by Microsoft `Azure Data Studio` can be used to manage various data platforms including Azure SQL Database, SQL Server PostgreSQL and MySqL, among others. It it a powerful tool which simplifies database management tasks.
+
+These need the appropriate firewalls rules and settings, including IP address. Prior to migration, I needed to prepare for migration by ________ and connecting to Azure SQL Database. 
+
+steps were followed to ensure the database schema and data were transferred successfully using the Azure Data Studio app.
+
+The following steps outline the requirements for installing and configuring Azure Data Studio, connecting to a local SQL Server Database, connecting to an Azure SQL Database, before migrating the schema (using SQL Server Schema Compare extnesion) followed by the data (using the Azure SQL Migration extension).
+
+Firstly, the schema needed to be migrated using ______, which was then followed by the data migration.
+
+To ensure successful migration, the ____ was checked.
+
+The follwing outlines this process in more detail:
 
 ## 3.1. Setting Up Azure SQL Database
 
-1. 
+1. On your VM, navigate to Azure Data Studio and download the Windows version of `Azure Data Studio`. Install the programme and click `Crete a desctop icon` to be able to access this app quickly.
+2. Launch `Azure Data Studio` and 
+
 
 
 ##
