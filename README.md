@@ -1,4 +1,4 @@
-# Azure Database Migration Project
+![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/ec4ca92e-93cf-44b0-af82-1967327c03c7)![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/f60ae036-9649-45b0-9cf1-77694e0f41eb)# Azure Database Migration Project
 
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
@@ -12,6 +12,9 @@
    3. [Creating the Production Database](#creating-the-production-database)
 4. [Azure SQL Database Migration](#azure-sql-database-migration)
    1. [Setting Up Azure SQL Database](setting-up-azure-sql-database)
+   2. [Preparing for Migration](#preparing-for-migration)
+   3. [Schema Migration](#schema-migration)
+   4. [Data Migration](#data-migration)
 6. [Data Backup and Restore](#data-backup-and-restore)
 7. [Disaster Recovery Simulation](#disaster-recovery-simulation)
 8. [Geo Repliacation and Failover](#geo-replication-and-failover)
@@ -20,15 +23,14 @@
 
 ## 1. Introduction 
 
-Welcome to my Multinational Retail Data Centralisation Project! 
+Welcome to my Multinational Retail Data Centralisation Project!
 
-This README.md outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this cloud-based technology. This project entails creating an Azure Virtual Machine (VM) and restoring a database before migrating the database and simulating a disataer recovery for data loss. [fill in more later]
 
-__Why MS Azure? List pros. touch on cons?__
+This README.md outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this cloud-based technology. This project entails creating an Azure Virtual Machine (VM) and restoring a database before migrating the database and simulating a disataer recovery for data loss. 
+
+I have included a brief description and analysis of each section before delving into the step-by-step process I took to achieve this project. 
 
 ## 2. Production Environment Setup
-
-__general info about this stage__
 
 In a production environment, a database can be established and made available for client presentation. On the other hand, the development environment serves as an isolated space where developers can test and create new features. These are only transferred to the production environment after testing to ensure functionality and prevent accidental data loss.
 
@@ -40,9 +42,14 @@ Azure VMs are a type of Infrastructure-as-a-Service (Iaas) which enables the use
 
 I hosted my database on Azure SQL as it is a cloud-based relational database service providing a managed and scalable platform for running SQL Server databases on the cloud. Azure SQL is built on SQL Server technology, a widely-used relational database manage,ent system (RDBMS). It offers many of the same features and functionality as SQL Server but with the added benefits of cloud computing, as well as enhanced performance, scalability and security. It offers three different types of deployment options (Azure SQL Database, Azure SQL Elastic Pool, and Azure SQL Managed Instance). For this project I used Azure SQL Database as a fully managed, scalabale and highly available database service which offers automatic failover and point-in-time restore capabilities. I needed to install SQL Server onto my VM and SQL Server Management Studio (SSMS). 
 
-### 2.1. Provisioning the Windows Virtual Machine
+"As businesses increasingly embrace cloud computing to drive innovation and scalability, the migration of databases from on-premise environments to the cloud has become a strategic imperative. To achieve a seamless transition, a powerful and user-friendly database management tool is essential. Enter Azure Data Studio, a cutting-edge cross-platform solution developed by Microsoft to simplify database management and streamline the migration process.
+Azure Data Studio provides a feature-rich environment, catering to the diverse needs of database administrators, developers, and data professionals. Azure Data Studio empowers users to manage various data platforms, including SQL Server, Azure SQL Database, PostgreSQL, MySQL, and more. With its seamless integration with Azure services, it offers a unified interface to manage both local and cloud-based databases, making it the perfect companion for database migration." - notebook!
 
-__step-wise steps__
+__SQL Server__ is a relational database mamagement system (RDBMS) developed by Microsoft to sotre and manage vast quantities of data and supports structured query language (SQL) and Transact-SQL (T-SQL). __SQL Server Management Studio (SSMS)__ is a powerful graphical user interface (GUI) tool for managing SQL Server instances and databases. It is a central hub for database administrators and ddvelopers to perform various tasks related to SQL Server. In this project I have used both of these resources to manage the AdventureWorks database.
+
+To download the database onto SQL server, I used the AdventureWorks database provided by Microsoft. This is a ______ etc. I used SSMS's backup option to get the database onto my machine by downloading the .bak file and then  
+
+### 2.1. Provisioning the Windows Virtual Machine
 
 1. I created a Microsoft Azure Account from my local machine's browser.
 2. Within the Microsoft Azure portal's home page, I navigated to the `Virtual Machines` page > `+ Create` > `Azure Virtual Machine` to start the process.
@@ -60,20 +67,38 @@ __step-wise steps__
 <img width="900" alt="Screenshot 2024-01-28 at 20 33 46" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/fc36be35-885c-44c7-9d45-5589859aa6a5">
 
 8. To connect to this VM, I downloaded the .RDP file from the VM Overview page (`Connect` > `Download RDP file`) before dragging this file into the `Microsoft Remote Desktop Client` app on my local machine.
-9. I double clicked my VM and used my credentials to log in.  
+<img width="900" alt="Screenshot 2024-01-28 at 20 35 09" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/a13ad959-6b94-4e80-9508-7ee190d07296">
+
+10. I double clicked my VM and used my credentials to log in.
+<img width="900" alt="Screenshot 2024-01-28 at 20 36 40" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/cfc9a97c-9e7f-48b3-8dcb-7002bf3a41ea">
 
 ### 2.2. SQL Server and SSMS
 
-1. I installed `SQL Server` as this is 
+1. I downloaded `SQL Server Installer` from the Microsoft Download Centre on my VM's browser.
+2. I ran the SQL Server `Installation Wizard` and chose the `Basic` option.
+3. I accpeted the license terms and chose where to install it to on my VM.
+4. After it was finished installing, it prompted me to download SQL Server Management Studio (SSMS).
+5. After following the installation process, I connected to the SQL Server using SSMS by using 'localhost' as the server name (as the database is on the same machine).
+7. I used `Windows Authentication` and my VM's Windows credentials to log in > `Connect`. I could then see my SQL Server instance displayed under the Object Explorer:
+
+<img width="900" alt="Screenshot 2024-01-28 at 22 22 59" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/38d58d8e-1d78-4f9b-885b-0465c8e3e83d">
 
 ### 2.3. Creating the Production Database
 
-What the database is - describe etc.
-What is a production database.
+1.	Firstly, I downloaded the Production Database AdventureWorks from the file provided by Mcirosoft onto my VM. (link https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak )
+2.	I copied the file and put it into ` C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup` on the VM.
+3.	With the SQL Server connection active on SSMS, I right-clicked on `Databases` in Object Explorer and chose `Restore Database`.
+4.	For the source, I choose `Device`, `…` and `Add` to select the .bak backup file that’s in the Backup folder. 
+5.	On the General page, I made sure the database was correct and selected `OK`, which came up with a `Database restored successfully` message.
+   <img width="900" alt="Screenshot 2024-01-28 at 22 29 24" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/8f6cfa4f-16ef-4850-aa8b-d61fae999414">
+
+7.	I right clicked the database and made a quick query to make sure everything was working alright.
+
+<img width="900" alt="Screenshot 2024-01-28 at 22 31 21" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/7271b79f-078c-4661-9eca-27dbdb3449e0">
 
 ### 3. Azure SQL Database Migration 
 
-Azure SQL Databse is an online databse service that has high availability and disaster recovery capabilities. It provides automated backups to protect data from loss or corruption and minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. The encrypted data uses Transparent data encryption (TDE) which protects against unauthorised access. There are two main compute tiers: Serverless Computer tier is chosen as I don't need to pre-allocate any resources and the database automaticall scales resources up or down based on the workload demand, saving unexpected costs as you only pay for the resources I use.
+Azure SQL Database is an online database service that has high availability and disaster recovery capabilities. It provides automated backups to protect data from loss or corruption and minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. The encrypted data uses Transparent data encryption (TDE) which protects against unauthorised access. There are two main compute tiers: Serverless Computer tier is chosen as I don't need to pre-allocate any resources and the database automaticall scales resources up or down based on the workload demand, saving unexpected costs as you only pay for the resources I use.
 
 In order to transition a database onto Azure's cloud ecosystem, it needs to be migrated from the on-premise database to an Azure SQL Database, which serves as a target for migrating my on-premise database.
 
@@ -91,15 +116,9 @@ To ensure successful migration, the ____ was checked.
 
 "Azure SQL Database is a fully-managed, Platform-as-a-Service (PaaS) offering within Azure, built on the foundation of Azure SQL Server. Azure SQL Server is a cloud-based implementation of Microsoft SQL Server, a widely-used relational database management system (RDBMS). It provides a fully-managed environment for hosting SQL databases in the cloud, eliminating the need for on-premises hardware and maintenance." - collab nb
 
-The follwing outlines this process in more detail:
+The SQL Database requires a new server which will act as a container for the database and requires sql server authentication to be set up so one can log in from SQL Server.
 
-## 3.1. Setting Up Azure SQL Database
-
-1. In the Azure Portal online, create a resource >
-2. Create server
-3. set firewall rules
-
-<img width="800" alt="Screenshot 2024-02-01 at 14 53 57" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4aa98ed5-d505-4038-a9d4-09f476e76625">
+Firstly, the local database is connected to, and then the Azure SQL Database that's freshly created. This requires a few different takes to connect, as the firewall rules need to be set n Microsoft Azure portal. After connection, the
 
 "By default, Azure SQL Database is configured to deny all public connections. To connect to your database from outside of Azure, you will need to enable public access by configuring a firewall rule that allows traffic from your client IP address. To do this, first navigate to your Azure SQL Database in the Azure portal. Click on the Set server firewall tab on the top middle of the screen.
 
@@ -107,7 +126,33 @@ Public network access to a SQL Server instance is controlled by the Public Netwo
 
 By default, the Public Network Access setting is set to Deny, which means that only traffic from within the Azure network is allowed to reach your SQL Server instance. To allow traffic from the public internet to reach your SQL Server instance, you can change the Public Network Access setting to Selected networks."
 
-##
+The follwing outlines this process in more detail:
+
+## 3.1. Setting Up Azure SQL Database
+
+1. In the Azure Portal, I navigated to `SQL Database` > `Create`.
+2. I created a new resource group 'adventureworks-rg, and named the database 'AdventureWorks2022'.
+3. I created a new server with the name 'ad-works-server', geographic location UK South and SQL Server Authentication username and password. I configured compute to the `Basic` storage plan.
+4. I clicked `Review + Create` > `Create` before navigating to the resource to add some firewall rules.
+
+<img width="800" alt="Screenshot 2024-02-01 at 14 53 57" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4aa98ed5-d505-4038-a9d4-09f476e76625">
+
+4. I clicked `Set Server Firewall` > `Selected Network` and pressed `Save`.
+6. To connect to this Azure SQL Database, VSCode was used on my local machine.
+7. I installed the VSCode `SQL Server` extension and used it to `+ Connection`.
+8. This prompts the entry of `Server Name`,`DB Name`, `SQL Login details` and `Display name`, however this prompted me to `Add account` so I signed into Azure using my Account details.
+9. I repeated the VSCode `+ Connection` steps again, and it prometed me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
+10. Once again, I pressed `+ Connection` on VSCode and was able to connect successfully to the Azure SQL Database.
+
+## Preparing for Migration
+
 
 1. On your VM, navigate to Azure Data Studio and download the Windows version of `Azure Data Studio`. Install the programme and click `Crete a desctop icon` to be able to access this app quickly.
-2. Launch `Azure Data Studio` and 
+2. Launch `Azure Data Studio` and
+
+## Schema Migration
+
+## Data Migration 
+
+
+
