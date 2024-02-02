@@ -1,4 +1,4 @@
-<img width="1440" alt="Screenshot 2024-01-28 at 20 33 46" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/bb05d834-3f30-42bf-94f1-52de5683c0ba"># Azure Database Migration Project
+# Azure Database Migration Project
 
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
@@ -36,7 +36,9 @@ In the following steps, I will outline the creation of a production environment 
 
 I've chosen the Windows 11 Pro operating syster as my virtual machine as this setup simulates a secure and dedicated data storage solution that is likely what an on-premise system within a company would use for this type of database manipluation. Running a Windows 11 VM on my local machine offers several advantages such as being able to access exclusive windows applications and software, and being able to run this software without the need for a seperate physical Windows machine. 
 
-Azure VMs are a type of Infrastructure-as-a-Service (Iaas) which enables the user to create and run virtual machines in the cloud. It is a software emulation of a physical computer system that runs on top of a hypervisor. A hypervisor is a layer of software allowing multiple VMs to run on a single physical server. When creating my machine, to enable incoming network traffic from my port specifically I needed to create an inport bound rule which would allow me to connect through the Remote Desktop Protocol (RDP), as by default, all iinbound traffic is blocked for security purposes.
+Azure VMs are a type of Infrastructure-as-a-Service (Iaas) which enables the user to create and run virtual machines in the cloud. It is a software emulation of a physical computer system that runs on top of a hypervisor. A hypervisor is a layer of software allowing multiple VMs to run on a single physical server. When creating my machine, to enable incoming network traffic from my port specifically I needed to create an inport bound rule which would allow me to connect through the Remote Desktop Protocol (RDP), as by default, all inbound traffic is blocked for security purposes.
+
+I hosted my database on Azure SQL as it is a cloud-based relational database service providing a managed and scalable platform for running SQL Server databases on the cloud. Azure SQL is built on SQL Server technology, a widely-used relational database manage,ent system (RDBMS). It offers many of the same features and functionality as SQL Server but with the added benefits of cloud computing, as well as enhanced performance, scalability and security. It offers three different types of deployment options (Azure SQL Database, Azure SQL Elastic Pool, and Azure SQL Managed Instance). For this project I used Azure SQL Database as a fully managed, scalabale and highly available database service which offers automatic failover and point-in-time restore capabilities. I needed to install SQL Server onto my VM and SQL Server Management Studio (SSMS). 
 
 ### 2.1. Provisioning the Windows Virtual Machine
 
@@ -62,7 +64,7 @@ __step-wise steps__
 
 ### 2.2. SQL Server and SSMS
 
-1. 
+1. I installed `SQL Server` as this is 
 
 ### 2.3. Creating the Production Database
 
