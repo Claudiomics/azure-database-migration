@@ -1,4 +1,6 @@
-![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/ec4ca92e-93cf-44b0-af82-1967327c03c7)![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/f60ae036-9649-45b0-9cf1-77694e0f41eb)# Azure Database Migration Project
+![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/ec4ca92e-93cf-44b0-af82-1967327c03c7)![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/f60ae036-9649-45b0-9cf1-77694e0f41eb)
+
+# Azure Database Migration Project
 
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
@@ -126,6 +128,8 @@ Public network access to a SQL Server instance is controlled by the Public Netwo
 
 By default, the Public Network Access setting is set to Deny, which means that only traffic from within the Azure network is allowed to reach your SQL Server instance. To allow traffic from the public internet to reach your SQL Server instance, you can change the Public Network Access setting to Selected networks."
 
+I then had to connect to the on-premise db from Azure Data Studio. 
+
 The follwing outlines this process in more detail:
 
 ## 3.1. Setting Up Azure SQL Database
@@ -138,17 +142,36 @@ The follwing outlines this process in more detail:
 <img width="800" alt="Screenshot 2024-02-01 at 14 53 57" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4aa98ed5-d505-4038-a9d4-09f476e76625">
 
 4. I clicked `Set Server Firewall` > `Selected Network` and pressed `Save`.
+
+<img width="900" alt="Screenshot 2024-02-01 at 15 24 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/3fa443e1-814d-4dbc-bf54-0bed792137f0">
+
+
+
 6. To connect to this Azure SQL Database, VSCode was used on my local machine.
 7. I installed the VSCode `SQL Server` extension and used it to `+ Connection`.
 8. This prompts the entry of `Server Name`,`DB Name`, `SQL Login details` and `Display name`, however this prompted me to `Add account` so I signed into Azure using my Account details.
-9. I repeated the VSCode `+ Connection` steps again, and it prometed me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
-10. Once again, I pressed `+ Connection` on VSCode and was able to connect successfully to the Azure SQL Database.
+<img width="469" alt="Screenshot 2024-02-01 at 15 33 02" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/e4380905-fc92-4d32-ac19-6d5d5092fc2f">
+10. I repeated the VSCode `+ Connection` steps again, and it prometed me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
+<img width="464" alt="Screenshot 2024-02-01 at 15 35 55" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/38f0c136-b514-46c6-a444-1f949095dcbb">
+<img width="635" alt="Screenshot 2024-02-01 at 15 38 01" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/b75d2398-35a5-4d4d-8e8c-9228421c1c65">
+
+12. Once again, I pressed `+ Connection` on VSCode and was able to connect successfully to the Azure SQL Database.
+13. <img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
+
 
 ## Preparing for Migration
 
+1. To connect to the on-premise database on my VM, I downloaded the Windows version of `Azure Data Studio`. I installed the programme and clicked `Create a desctop icon` to be able to access the app quickly.
+2. I launched `Azure Data Studio` and clicked `New Connection`.
+   
+<img width="1023" alt="Screenshot 2024-02-01 at 15 43 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c42c41e-7409-4fb8-a28e-fe190eaab6e8">
 
-1. On your VM, navigate to Azure Data Studio and download the Windows version of `Azure Data Studio`. Install the programme and click `Crete a desctop icon` to be able to access this app quickly.
-2. Launch `Azure Data Studio` and
+4. I used 'localhost' as the server name, with Windows Azure authentication type. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
+
+
+
+6. To connect to the Azure SQL Database
+
 
 ## Schema Migration
 
