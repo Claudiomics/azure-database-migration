@@ -98,7 +98,9 @@ The follwing outlines this process in more detail:
 
 "By default, Azure SQL Database is configured to deny all public connections. To connect to your database from outside of Azure, you will need to enable public access by configuring a firewall rule that allows traffic from your client IP address. To do this, first navigate to your Azure SQL Database in the Azure portal. Click on the Set server firewall tab on the top middle of the screen.
 
-Public network access to a SQL Server instance is controlled by the Public Network Access setting. This setting determines whether traffic from the public internet is allowed to reach your SQL Server instance."
+Public network access to a SQL Server instance is controlled by the Public Network Access setting. This setting determines whether traffic from the public internet is allowed to reach your SQL Server instance.
+
+By default, the Public Network Access setting is set to Deny, which means that only traffic from within the Azure network is allowed to reach your SQL Server instance. To allow traffic from the public internet to reach your SQL Server instance, you can change the Public Network Access setting to Selected networks."
 
 ##
 
