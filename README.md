@@ -1,4 +1,4 @@
-# Azure Database Migration Project
+<img width="1440" alt="Screenshot 2024-01-28 at 20 33 46" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/bb05d834-3f30-42bf-94f1-52de5683c0ba"># Azure Database Migration Project
 
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
@@ -32,34 +32,37 @@ __general info about this stage__
 
 In a production environment, a database can be established and made available for client presentation. On the other hand, the development environment serves as an isolated space where developers can test and create new features. These are only transferred to the production environment after testing to ensure functionality and prevent accidental data loss.
 
-In the following steps, I will outline the creation of a production environment to restore the Microsoft SQL Server 'AdventureWorks' production database, which is an illustrative and comprehensive sample database provided which emulates a fictional manufacturing company's operations, effecitvely replicating a real-world production database scenario. 
+In the following steps, I will outline the creation of a production environment to restore the Microsoft SQL Server 'AdventureWorks' production database, which is an illustrative and comprehensive sample database provided which emulates a fictional manufacturing company's operations, effecitvely replicating a real-world production database scenario.
 
-I've chosen the Windows 11 Pro as this setup simulates a secure and dedicated data storage solution that is likely what an on-premise system within a company would use for this type of database manipluation. Running a Windows 11 VM on my local machine offers several advantages such as being able to access exclusive windows applications and software, and being able to run this software without the need for a seperate physical Windows machine. 
+I've chosen the Windows 11 Pro operating syster as my virtual machine as this setup simulates a secure and dedicated data storage solution that is likely what an on-premise system within a company would use for this type of database manipluation. Running a Windows 11 VM on my local machine offers several advantages such as being able to access exclusive windows applications and software, and being able to run this software without the need for a seperate physical Windows machine. 
 
-Azure VMs are a type of Infrastructure-as-a-Service (Iaas) which enables the user to create and run virtual machines in the cloud. It is a software emulation of a physical computer sustem that runs on ntop of a hypervisor. A hypervisor is a layer of software allowing multiple VMs to run on a single physical server. 
-
+Azure VMs are a type of Infrastructure-as-a-Service (Iaas) which enables the user to create and run virtual machines in the cloud. It is a software emulation of a physical computer system that runs on top of a hypervisor. A hypervisor is a layer of software allowing multiple VMs to run on a single physical server. When creating my machine, to enable incoming network traffic from my port specifically I needed to create an inport bound rule which would allow me to connect through the Remote Desktop Protocol (RDP), as by default, all iinbound traffic is blocked for security purposes.
 
 ### 2.1. Provisioning the Windows Virtual Machine
 
 __step-wise steps__
 
-1. A Microsoft Azure Account was created from the local machine's browser.
-2. Within the Microsoft Azure Portal's home page, I navigated to the `Virtual Machines` page > `+ Create` > `Azure Virtual Machine` to start the process.
+1. I created a Microsoft Azure Account from my local machine's browser.
+2. Within the Microsoft Azure portal's home page, I navigated to the `Virtual Machines` page > `+ Create` > `Azure Virtual Machine` to start the process.
 4. The following page required the addition of several key pieces of information:
-     1. `Name`: _____Create a name for the virtual machine______. This is normal.
-5. This 
+     1. `Subscription` - I chose which account subscription I wanted the VM to be managed and billed by.
+     2. `Resource Group` - I created a new resource group.
+     3. `Name` - I named my VM something descriptive.
+     4. `Region` - I chose the region I was geographically located in.
+     5. `Image` - The operating system I chose was Windows 11 Pro. 
+     6. `Size` - I chose the B2ms general purpose VM as I don't need massive storage space and has a low running cost.
+     7. `Administrator account` - I created a password-based authentication which will be used to log into the VM's operating system.
+     8. `Inbound port rules` - To enable remote access to the VM through Remote Desktop Protocol (RDP), the RDP port (port 3389) was allowed. 
+5. After pressing `Review + Create` and then `Create`, I was able to view my resource in the portal, as shown below:
 
-In order to set up a Windows Virtual Machine (VM), 
+<img width="900" alt="Screenshot 2024-01-28 at 20 33 46" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/fc36be35-885c-44c7-9d45-5589859aa6a5">
 
-To enable the connection
-
-Ensure that you configure the appropriate network settings and firewall rules. This configuration will enable you to establish a connection to the VM using the RDP protocol.
-
-In order to 
-
-Provide insights into the virtual machine setup, SQL Server installation, and the creation of the production database.
+8. To connect to this VM, I downloaded the .RDP file from the VM Overview page (`Connect` > `Download RDP file`) before dragging this file into the `Microsoft Remote Desktop Client` app on my local machine.
+9. I double clicked my VM and used my credentials to log in.  
 
 ### 2.2. SQL Server and SSMS
+
+1. 
 
 ### 2.3. Creating the Production Database
 
