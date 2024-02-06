@@ -5,7 +5,7 @@
 ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
 
 # Table of Contents
-1. [Introduction](#introduction)
+1. [1. Introduction](#1.-introduction)
 2. [Production Environment Setup](#production-environment-setup)
    1. [Provisioning the Windows Virtual Machine](#provisioning-the-windows-virtual-machine)
    2. [SQL Server and SSMS](#sql-server-and-ssms)
