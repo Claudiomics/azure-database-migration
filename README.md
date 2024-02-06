@@ -18,10 +18,20 @@
    3. [Schema Migration](#schema-migration)
    4. [Data Migration](#data-migration)
 6. [Data Backup and Restore](#data-backup-and-restore)
-7. [Disaster Recovery Simulation](#disaster-recovery-simulation)
-8. [Geo Repliacation and Failover](#geo-replication-and-failover)
-9. [Microsoft Entra Directory Integration](#microsoft-entra-directory-integration)
-10. [Licence Information](#licence-information)
+   1. [Backing up the On-Premise Database](#backing-up-the-on-premise-database)
+   2. [Uploading to Blob Storage](#uploading-to-blob-storage)
+   3. [Restoring the Database on Development Environment](#restoring-the-database-on-development-environment)
+   4. [Automating Backups for Development Database](automating-backups-for-development-database)
+8. [Disaster Recovery Simulation](#disaster-recovery-simulation)
+   1. [Mimicing Data Loss in Production Environment](#mimicing-data-loss-in-production-environment)
+   2. [Restoring Database from Azure SQL Database Backup](#restoring-database-from-azure-sql-database-backup)
+10. [Geo Repliacation and Failover](#geo-replication-and-failover)
+   1. [Setting up Geo-Replication for Azure SQL Database](#setting-up-geo-replication-for-azure-sql-database)
+   2. [Testing Failover and Failback](#testing-failover-and-failback)
+12. [Microsoft Entra Directory Integration](#microsoft-entra-directory-integration)
+   1. [Configuring Microsoft Entra ID for Azure SQL Database](#configuring-microsoft-entra-id-for-azure-sql-database)
+   2. [Creating a Database Reader User](#creating-a-database-reader-user)
+14. [Licence Information](#licence-information)
 
 ## 1. Introduction 
 
@@ -159,7 +169,7 @@ The follwing outlines this process in more detail:
 13. <img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
 
 
-## Preparing for Migration
+### Preparing for Migration
 
 1. To connect to the on-premise database on my VM, I downloaded the Windows version of `Azure Data Studio`. I installed the programme and clicked `Create a desctop icon` to be able to access the app quickly.
 2. I launched `Azure Data Studio` and clicked `New Connection`.
@@ -173,9 +183,41 @@ The follwing outlines this process in more detail:
 6. To connect to the Azure SQL Database
 
 
-## Schema Migration
+### Schema Migration
 
-## Data Migration 
+### Data Migration 
+
+## Data Backup and Restore
+
+### Backing up the On-Premise Database
+
+### Uploading to Blob Storage
+
+### Restoring the Database on Development Environment
+
+### Automating Backups for Development Database
+
+## Disaster Recovery Simulation
+
+### Mimicing Data Loss in Production Environment
+
+### Restoring Database from Azure SQL Database Backup
+
+## Geo Repliacation and Failover
+
+### Setting up Geo-Replication for Azure SQL Database
+
+### Testing Failover and Failback
+
+## Microsoft Entra Directory Integration
+
+### Configuring Microsoft Entra ID for Azure SQL Database
+
+### Creating a Database Reader User
+
+## Licence Information
+
+
 
 
 
