@@ -1,5 +1,3 @@
-![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/ec4ca92e-93cf-44b0-af82-1967327c03c7)![image](https://github.com/Claudiomics/azure-database-migration/assets/149532217/f60ae036-9649-45b0-9cf1-77694e0f41eb)
-
 # Azure Database Migration Project
 
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
@@ -223,7 +221,7 @@ To manage who can access the data, I integrated Microsoft Entra Directory with m
 
 ### 7.2. Creating a Database Reader User
 
-## 8. Licence Information
+## Licence Information
 
 
 
