@@ -181,15 +181,21 @@ The follwing outlines this process in more detail:
 
 
 6. To connect to the Azure SQL Database
-
-
 ### 3.3. Schema Migration
-
 ### 3.4. Data Migration 
-
 ## 4. Data Backup and Restore
 
+Before creating a development environment for this database, I had to ensure the stored data in the production database is secure. The production database is for storing real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database. Maintains the integrity of the live data.
+
+I backed up the on-premise database by generating a full backup of the production database hosted on the Windows VM, and stored it in the backup file of the VM, before storing it in Azure's blob storage solution. T
+
+Finally, I created an automated backup solution for the development environment, which safeguards any work that is done in future and aneables swift recovery from errors or data loss. There are multiple choices of the times each data backup occurs, with varying cost although it is automatically set to save every 24 hours. 
+
+The following steps were taken to achieve this:
+
 ### 4.1. Backing up the On-Premise Database
+
+1. 
 
 ### 4.2. Uploading to Blob Storage
 
@@ -210,6 +216,8 @@ The follwing outlines this process in more detail:
 ### 6.2. Testing Failover and Failback
 
 ## 7. Microsoft Entra Directory Integration
+
+To manage who can access the data, I integrated Microsoft Entra Directory with my Azure SQL Database setup. In this section, I 
 
 ### 7.1. Configuring Microsoft Entra ID for Azure SQL Database
 
