@@ -108,7 +108,7 @@ To download the database onto SQL server, I used the AdventureWorks database pro
 
 <img width="900" alt="Screenshot 2024-01-28 at 22 31 21" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/7271b79f-078c-4661-9eca-27dbdb3449e0">
 
-### 3. Azure SQL Database Migration 
+## 3. Azure SQL Database Migration 
 
 Azure SQL Database is an online database service that has high availability and disaster recovery capabilities. It provides automated backups to protect data from loss or corruption and minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. The encrypted data uses Transparent data encryption (TDE) which protects against unauthorised access. There are two main compute tiers: Serverless Computer tier is chosen as I don't need to pre-allocate any resources and the database automaticall scales resources up or down based on the workload demand, saving unexpected costs as you only pay for the resources I use.
 
@@ -142,7 +142,7 @@ I then had to connect to the on-premise db from Azure Data Studio.
 
 The follwing outlines this process in more detail:
 
-## 3.1. Setting Up Azure SQL Database
+### 3.1. Setting Up Azure SQL Database
 
 1. In the Azure Portal, I navigated to `SQL Database` > `Create`.
 2. I created a new resource group 'adventureworks-rg, and named the database 'AdventureWorks2022'.
@@ -169,7 +169,7 @@ The follwing outlines this process in more detail:
 13. <img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
 
 
-### Preparing for Migration
+### 3.2. Preparing for Migration
 
 1. To connect to the on-premise database on my VM, I downloaded the Windows version of `Azure Data Studio`. I installed the programme and clicked `Create a desctop icon` to be able to access the app quickly.
 2. I launched `Azure Data Studio` and clicked `New Connection`.
@@ -183,39 +183,39 @@ The follwing outlines this process in more detail:
 6. To connect to the Azure SQL Database
 
 
-### Schema Migration
+### 3.3. Schema Migration
 
-### Data Migration 
+### 3.4. Data Migration 
 
-## Data Backup and Restore
+## 4. Data Backup and Restore
 
-### Backing up the On-Premise Database
+### 4.1. Backing up the On-Premise Database
 
-### Uploading to Blob Storage
+### 4.2. Uploading to Blob Storage
 
-### Restoring the Database on Development Environment
+### 4.3. Restoring the Database on Development Environment
 
-### Automating Backups for Development Database
+### 4.4. Automating Backups for Development Database
 
-## Disaster Recovery Simulation
+## 5. Disaster Recovery Simulation
 
-### Mimicing Data Loss in Production Environment
+### 5.1. Mimicing Data Loss in Production Environment
 
-### Restoring Database from Azure SQL Database Backup
+### 5.2. Restoring Database from Azure SQL Database Backup
 
-## Geo Repliacation and Failover
+## 6. Geo Repliacation and Failover
 
-### Setting up Geo-Replication for Azure SQL Database
+### 6.1. Setting up Geo-Replication for Azure SQL Database
 
-### Testing Failover and Failback
+### 6.2. Testing Failover and Failback
 
-## Microsoft Entra Directory Integration
+## 7. Microsoft Entra Directory Integration
 
-### Configuring Microsoft Entra ID for Azure SQL Database
+### 7.1. Configuring Microsoft Entra ID for Azure SQL Database
 
-### Creating a Database Reader User
+### 7.2. Creating a Database Reader User
 
-## Licence Information
+## 8. Licence Information
 
 
 
