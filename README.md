@@ -5,7 +5,7 @@
 ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
 
 # Table of Contents
-1. [1. Introduction](#1.-introduction)
+1. [Introduction](#introduction)
 2. [Production Environment Setup](#production-environment-setup)
    1. [Provisioning the Windows Virtual Machine](#provisioning-the-windows-virtual-machine)
    2. [SQL Server and SSMS](#sql-server-and-ssms)
@@ -31,7 +31,7 @@
    2. [Creating a Database Reader User](#creating-a-database-reader-user)
 14. [Licence Information](#licence-information)
 
-## 1. Introduction 
+## Introduction 
 
 Welcome to my Multinational Retail Data Centralisation Project!
 
@@ -40,7 +40,7 @@ This README.md outlines the process of setting up a cloud-based database system 
 
 I have included a brief description and analysis of each section before delving into the step-by-step process I took to achieve this project. 
 
-## 2. Production Environment Setup
+## Production Environment Setup
 
 In a production environment, a database can be established and made available for client presentation. On the other hand, the development environment serves as an isolated space where developers can test and create new features. These are only transferred to the production environment after testing to ensure functionality and prevent accidental data loss.
 
@@ -59,7 +59,7 @@ __SQL Server__ is a relational database mamagement system (RDBMS) developed by M
 
 To download the database onto SQL server, I used the AdventureWorks database provided by Microsoft. This is a ______ etc. I used SSMS's backup option to get the database onto my machine by downloading the .bak file and then  
 
-### 2.1. Provisioning the Windows Virtual Machine
+### Provisioning the Windows Virtual Machine
 
 1. I created a Microsoft Azure Account from my local machine's browser.
 2. Within the Microsoft Azure portal's home page, I navigated to the `Virtual Machines` page > `+ Create` > `Azure Virtual Machine` to start the process.
@@ -82,7 +82,7 @@ To download the database onto SQL server, I used the AdventureWorks database pro
 10. I double clicked my VM and used my credentials to log in.
 <img width="900" alt="Screenshot 2024-01-28 at 20 36 40" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/cfc9a97c-9e7f-48b3-8dcb-7002bf3a41ea">
 
-### 2.2. SQL Server and SSMS
+### SQL Server and SSMS
 
 1. I downloaded `SQL Server Installer` from the Microsoft Download Centre on my VM's browser.
 2. I ran the SQL Server `Installation Wizard` and chose the `Basic` option.
@@ -93,7 +93,7 @@ To download the database onto SQL server, I used the AdventureWorks database pro
 
 <img width="900" alt="Screenshot 2024-01-28 at 22 22 59" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/38d58d8e-1d78-4f9b-885b-0465c8e3e83d">
 
-### 2.3. Creating the Production Database
+### Creating the Production Database
 
 1.	Firstly, I downloaded the Production Database AdventureWorks from the file provided by Mcirosoft onto my VM. (link https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak )
 2.	I copied the file and put it into ` C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup` on the VM.
@@ -106,7 +106,7 @@ To download the database onto SQL server, I used the AdventureWorks database pro
 
 <img width="900" alt="Screenshot 2024-01-28 at 22 31 21" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/7271b79f-078c-4661-9eca-27dbdb3449e0">
 
-## 3. Azure SQL Database Migration 
+## Azure SQL Database Migration 
 
 Azure SQL Database is an online database service that has high availability and disaster recovery capabilities. It provides automated backups to protect data from loss or corruption and minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. The encrypted data uses Transparent data encryption (TDE) which protects against unauthorised access. There are two main compute tiers: Serverless Computer tier is chosen as I don't need to pre-allocate any resources and the database automaticall scales resources up or down based on the workload demand, saving unexpected costs as you only pay for the resources I use.
 
@@ -140,7 +140,7 @@ I then had to connect to the on-premise db from Azure Data Studio.
 
 The follwing outlines this process in more detail:
 
-### 3.1. Setting Up Azure SQL Database
+### Setting Up Azure SQL Database
 
 1. In the Azure Portal, I navigated to `SQL Database` > `Create`.
 2. I created a new resource group 'adventureworks-rg, and named the database 'AdventureWorks2022'.
@@ -167,7 +167,7 @@ The follwing outlines this process in more detail:
 13. <img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
 
 
-### 3.2. Preparing for Migration
+### Preparing for Migration
 
 1. To connect to the on-premise database on my VM, I downloaded the Windows version of `Azure Data Studio`. I installed the programme and clicked `Create a desctop icon` to be able to access the app quickly.
 2. I launched `Azure Data Studio` and clicked `New Connection`.
@@ -179,9 +179,9 @@ The follwing outlines this process in more detail:
 
 
 6. To connect to the Azure SQL Database
-### 3.3. Schema Migration
-### 3.4. Data Migration 
-## 4. Data Backup and Restore
+### Schema Migration
+### Data Migration 
+## Data Backup and Restore
 
 Before creating a development environment for this database, I had to ensure the stored data in the production database is secure. The production database is for storing real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database. Maintains the integrity of the live data.
 
@@ -191,35 +191,35 @@ Finally, I created an automated backup solution for the development environment,
 
 The following steps were taken to achieve this:
 
-### 4.1. Backing up the On-Premise Database
+### Backing up the On-Premise Database
 
 1. 
 
-### 4.2. Uploading to Blob Storage
+### Uploading to Blob Storage
 
-### 4.3. Restoring the Database on Development Environment
+### Restoring the Database on Development Environment
 
-### 4.4. Automating Backups for Development Database
+### Automating Backups for Development Database
 
-## 5. Disaster Recovery Simulation
+## Disaster Recovery Simulation
 
-### 5.1. Mimicing Data Loss in Production Environment
+### Mimicing Data Loss in Production Environment
 
-### 5.2. Restoring Database from Azure SQL Database Backup
+### Restoring Database from Azure SQL Database Backup
 
-## 6. Geo Repliacation and Failover
+## Geo Repliacation and Failover
 
-### 6.1. Setting up Geo-Replication for Azure SQL Database
+### Setting up Geo-Replication for Azure SQL Database
 
-### 6.2. Testing Failover and Failback
+### Testing Failover and Failback
 
-## 7. Microsoft Entra Directory Integration
+## Microsoft Entra Directory Integration
 
 To manage who can access the data, I integrated Microsoft Entra Directory with my Azure SQL Database setup. In this section, I 
 
-### 7.1. Configuring Microsoft Entra ID for Azure SQL Database
+### Configuring Microsoft Entra ID for Azure SQL Database
 
-### 7.2. Creating a Database Reader User
+### Creating a Database Reader User
 
 ## Licence Information
 
