@@ -59,6 +59,11 @@ __SQL Server__ is a relational database mamagement system (RDBMS) developed by M
 
 To download the database onto SQL server, I used the AdventureWorks database provided by Microsoft. This is a ______ etc. I used SSMS's backup option to get the database onto my machine by downloading the .bak file and then  
 
+The follwing outlines this process in more detail:
+
+[Back to Table of Contents](#table-of-contents)
+[Skip to Azure SQL Database Migration](#Azure-SQL-Database-Migration)
+
 ### Provisioning the Windows Virtual Machine
 
 1. I created a Microsoft Azure Account from my local machine's browser.
@@ -140,6 +145,9 @@ I then had to connect to the on-premise db from Azure Data Studio.
 
 The follwing outlines this process in more detail:
 
+[Back to Table of Contents](#table-of-contents)
+[Skip to Backing up the On-Premise Database](#Backing-up-the-On-Premise-Database)
+
 ### Setting Up Azure SQL Database
 
 1. In the Azure Portal, I navigated to `SQL Database` > `Create`.
@@ -195,6 +203,7 @@ Finally, I created an automated backup solution for the development environment,
 
 The following steps were taken to achieve this:
 
+[Back to Table of Contents](#table-of-contents)
 [Skip to Disaster Recovery Simulation](#disaster-recovery-simulation)
 
 ### Backing up the On-Premise Database
@@ -211,11 +220,17 @@ The following steps were taken to achieve this:
 
 ## Disaster Recovery Simulation
 
+[Back to Table of Contents](#table-of-contents)
+[Skip to Geo Repliacation and Failover](#geo-replication-and-failover)
+
 ### Mimicing Data Loss in Production Environment
 
 ### Restoring Database from Azure SQL Database Backup
 
 ## Geo Repliacation and Failover
+
+[Back to Table of Contents](#table-of-contents)
+[Skip to Microsoft Entra Directory Integration](#microsoft-entra-directory-integration)
 
 ### Setting up Geo-Replication for Azure SQL Database
 
