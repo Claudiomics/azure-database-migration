@@ -185,17 +185,25 @@ The follwing outlines this process in more detail:
 
 Before creating a development environment for this database, I had to ensure the stored data in the production database is secure. The production database is for storing real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database. Maintains the integrity of the live data.
 
-I backed up the on-premise database by generating a full backup of the production database hosted on the Windows VM, and stored it in the backup file of the VM, before storing it in Azure's blob storage solution. T
+-- I backed up the on-premise database by generating a full backup of the production database hosted on the Windows VM, and stored it in the backup file of the VM, before storing it in an Azure's blob. Then, I restored the database in a development environemnt and configured the settings for automatic backups. -- 
+
+-- Data loss or corruption due to unexpected events or cyber threats can have massive negative implications to organisations, meaning backups are an essential aspect of managing databases. Azure SQL Database is used as a 'repository' for these companies who regularly backup and restore their databases using this system to ensure the quick restoration of data if required and minimise downtime. 
+
+Backing up a database is the creation of a copy of the database at a set point in time, and there are full backups (capturing the entire database at a specific point), a differential backup (captures just the new changes made since last full backup) and transaction log backups (). 
 
 Finally, I created an automated backup solution for the development environment, which safeguards any work that is done in future and aneables swift recovery from errors or data loss. There are multiple choices of the times each data backup occurs, with varying cost although it is automatically set to save every 24 hours. 
 
 The following steps were taken to achieve this:
 
+[Skip to Disaster Recovery Simulation](#disaster-recovery-simulation)
+
 ### Backing up the On-Premise Database
 
-1. 
+1. I generared 
 
 ### Uploading to Blob Storage
+
+1. 
 
 ### Restoring the Database on Development Environment
 
