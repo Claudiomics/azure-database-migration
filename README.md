@@ -240,6 +240,8 @@ The following steps were taken to achieve this:
 
 To manage who can access the data, I integrated Microsoft Entra Directory with my Azure SQL Database setup. In this section, I 
 
+To ensure only set individuals or groups are able to access this resource, 
+
 ### Configuring Microsoft Entra ID for Azure SQL Database
 
 ### Creating a Database Reader User
