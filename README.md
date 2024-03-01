@@ -216,6 +216,14 @@ The following steps were taken to achieve this:
 
 ### Restoring the Database on Development Environment
 
+1. I provisioned another Azure Windows VM to use as a development evnironment, following the [same method as before](#Provisioning-the-Windows-Virtual-Machine), and named my machine `development-vm`, before connecting to it using Microsoft Remote Desktop.
+2. I connected to the machine, logged onto Microsoft Azure and downloaded the `` file from Blob storage. I copied this file from where it was automatically saved to the filepath `f` so I could use it for creating the backup.
+3. On my development-vm, I installed and downloaded SQL Server Management as shown [before](#SQL-Server-and-SSMS), and opened it.
+4. I connected to the server and right clicked the database > `Restore` > `Device`, selected the .bak file from the backup folder and clicked `Add`.
+<img width="378" alt="Screenshot 2024-03-01 at 17 05 12" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6da907c5-a9bc-4e2a-90f9-12cdaac07195">
+<img width="989" alt="Screenshot 2024-03-01 at 16 24 04" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/11c74607-8f08-41db-bac7-6c41e739e0d8">
+<img width="1150" alt="Screenshot 2024-03-01 at 16 24 28" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/e57e7c5c-ef17-440d-8243-db425fd4d227">
+
 ### Automating Backups for Development Database
 
 ## Disaster Recovery Simulation
