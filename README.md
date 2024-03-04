@@ -185,10 +185,12 @@ The follwing outlines this process in more detail:
 4. I used 'localhost' as the server name, with Windows Azure authentication type. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
 
 
-
 6. To connect to the Azure SQL Database
+   
 ### Schema Migration
 ### Data Migration 
+To esnure this was completed successfully, I used the following input and outputs.
+
 ## Data Backup and Restore
 
 Before creating a development environment for this database, I had to ensure the stored data in the production database is secure. The production database is for storing real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database. Maintains the integrity of the live data.
@@ -225,6 +227,26 @@ The following steps were taken to achieve this:
 <img width="1150" alt="Screenshot 2024-03-01 at 16 24 28" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/e57e7c5c-ef17-440d-8243-db425fd4d227">
 
 ### Automating Backups for Development Database
+
+1. On my development virtual machine, in SSMS, I right clicked on `SQL Server Agent` and clicked `Start` > `Yes`, which creates a drop-down menu for this subunit.
+2. Before continuing, I created an SQL Server Credential in SSMS which is required to enable access to an Azure Storage account where the database will be backed up to.
+3. I right clicked on the server name and selected `Create Query`, and typed in the following before pressing `Execute` to create the credential. I got the Storage Account name and Access Key from my Azure Storgae Account under `Security and Networking` > `Access Keys`.
+
+`
+CREATE QUERY Claudia_Creds
+WITH IDENTITY = '[Azure Storage Account Name]'
+SECRET = '[Access Key]'`
+
+5. I refreshed the Object Explorer and checked the credential was visible in the `Security` segment of the server. 
+6. I pressed the `+` button of the `Management` node, right clicked `Maintenance Plans` and selected `Maintenance Plan Wizard`.
+7. I entered a descriptive name for the backup plan and pressed `Next`. I left the backup schedule as default for now to test the plan before committing to a set backup timescale. 
+8. I selected `Back Up Database (Full)` and pressed `Next`.
+9. In the `Back Up Database Task` segment, I selected the specific database I wanted to upload and chose `URL` as a backup destination.
+10. Under the `Destination` tab, I selected the SQL Server Credential I created in step 3 and under `Azure Storage Container` I entered the name of the container in Azure I want to upload the database to.
+11. I clicked through `Next` until I reached the end and clicked `Finish` to create the maintenance plan.
+13. I refreshed the maintenance plan node, right clicked on my newly created plan and clicked `Execute`.
+14. I checked my Storage Account on Microsoft Azure to ensure the plan was working as expected and returned to SSMS.
+15. I modified the backup schedule by right-clicking on the plan name, selecting `Modify` before setting the schedule by clicking the `Calender` icon which opened up a `New Job Schedule` window and I selected weekly backups.
 
 ## Disaster Recovery Simulation
 
