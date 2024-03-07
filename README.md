@@ -199,6 +199,8 @@ Before creating a development environment for this database, I had to ensure the
 
 -- Data loss or corruption due to unexpected events or cyber threats can have massive negative implications to organisations, meaning backups are an essential aspect of managing databases. Azure SQL Database is used as a 'repository' for these companies who regularly backup and restore their databases using this system to ensure the quick restoration of data if required and minimise downtime. 
 
+"In this example, our Windows VM holds our current production environment and database. We want to perform this backup, so we can later restore the database to a development environment where our developers can work on testing and developing new features. For creating a backup that can be restored to a development environment, we will choose the Full backup type."
+
 Backing up a database is the creation of a copy of the database at a set point in time, and there are full backups (capturing the entire database at a specific point), a differential backup (captures just the new changes made since last full backup) and transaction log backups (). 
 
 Finally, I created an automated backup solution for the development environment, which safeguards any work that is done in future and aneables swift recovery from errors or data loss. There are multiple choices of the times each data backup occurs, with varying cost although it is automatically set to save every 24 hours. 
@@ -210,11 +212,17 @@ The following steps were taken to achieve this:
 
 ### Backing up the On-Premise Database
 
-1. I generared 
+1. On the production VM, I opened SSMS and connected to the SQL Server Instance which was hosting the on-premise database.
+3. I right clicked on the database I wanted to backup and selected > `Tasks` > `Back-up`.
+4. In the dialogue box that popped up, I chose a name for the backup file and selected the destination for it to be saved in as the following filepath: `C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\`.
+5. I chose the `full` backup type and clicked `OK` to create the backup process.
+6. I recieved the message "The backup of database 'AdventureWorks2022' Completed Successfully".
 
 ### Uploading to Blob Storage
 
-1. 
+1. First, I set up a storage account and container by searching `Storage Accounts` and clicking `Create` in the Azure Portal. 
+4. I accessed the storage account and clicked `Upload` before dragging and dropping the on-premise database from the `\Backup\` location.
+5. I selected the container I wanted to store the database in and waited for it to upload.
 
 ### Restoring the Database on Development Environment
 
@@ -292,10 +300,9 @@ I used the Azure SQL Database backup to restore the lost data, as the production
 
 2. I selected a point in time from which to restore the database from, from when I knew the database wasn't corrupted. I chose the previous day, however in a real-world situation with an active database, I would choose a point that is as close to the point where data loss had occrued as possible.
 3. I entered a new Database name which is simply the name of the original database with `-restored` added to the end, before clicking `Review + create` and `Create`.
-4. To ensure the success of the restoration, I established a connection via Azure Data Studio and used the same query to count the number of entries in the dbo.DatabaseLog table.
-
-5. The table shows the original number of 1596 entries, showing that the restoration was a success.
-
+4. To ensure the success of the restoration, I established a new connection via Azure Data Studio and used a query to see the number of entries in the dbo.DatabaseLog table in the -restored database.
+<img width="1389" alt="Screenshot 2024-03-07 at 17 31 32" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/540b4001-687d-410e-a6ff-a325e34b66e7">
+6. The table shows the original number of 1596 entries, showing that the restoration was a success.
 
 ## Geo Repliacation and Failover
 
