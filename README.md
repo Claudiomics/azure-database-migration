@@ -250,19 +250,64 @@ SECRET = '[Access Key]'`
 
 ## Disaster Recovery Simulation
 
+Microsoft Azure has great disaster recovery capabilities to minimize downtime, protect data, ensure compliance and adapt to cyber security threats.
+
+Azure offers a wide range of disaster recovery capabilities designed to protect data, applications and services running on the platform. 
+
+This section of the project focuses on simulating the loss of data in a production environemnt, and being able to recover the lost or corrupt data from the development environment. The purpose of this testing is 
+
+Usually, in a real-life setting, this testing is completed using the development environment as deleting any data which is live can have negative impact if the data isn't being 
+
+This is being complete using the production environment using my initial VM, as it simulated a real-life data loss scenario and the data isn't critical. I noted down the exact data that I corrupted or deleted so I could check these data after recovery. 
+
+In the real world it's improtant to documentation this process, as the exact steps can be followed to reverse any negative outcomes from a real-life incidents and minimize the impact on critical business operations.
+
+Additioanlly, communicating to stakeholders when testing is crucial to build trust and prevent any confusion and be transparent. 
+
+The following segments outline the steps I took:
+
+I used the Azure SQL Database backup to restore the lost data, as the production environment held the full database and fully uploads it to Azure weekly.
+
 [Back to Table of Contents](#table-of-contents)
 [Skip to Geo Repliacation and Failover](#geo-replication-and-failover)
 
 ### Mimicing Data Loss in Production Environment
 
+1. On my production virtual machine (claudias-vm), I went onto Azure Data Studio and right clicked on my Azure SQL Database and created a new query to view some data in the ad-works database. This allowed me to examine the data before I chose what to delete. I pressed 'Run' to execute the query and the result showed there were 1596 entries within this table.
+`SELECT * FROM dbo.DatabaseLog;`
+
+<img width="1382" alt="Screenshot 2024-03-07 at 16 39 40" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6605c7cd-b8aa-49f6-85aa-149230536d51">
+
+3. I ran a new query to delete the first 96 from the dbo.DatabaseLog table.
+`DELETE TOP (96) FROM dbo.DatabaseLog;`
+
+5. To ensure the data was deleted, I re-ran the initial query and saw there were now 1500 entries, showing the data deletion was successful.
+<img width="1088" alt="Screenshot 2024-03-07 at 16 43 25" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/7489186a-461a-4a88-80d0-5e079a75c163">
+
 ### Restoring Database from Azure SQL Database Backup
 
+1. In the Azure Portal on my production vm, I navigated to `Azure SQL Database` and selected the target database that I wanted to restore and pressed `Restore`.
+
+<img width="778" alt="Screenshot 2024-03-07 at 16 51 31" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/76c6ceb0-a844-4467-93e1-768471536182">
+
+2. I selected a point in time from which to restore the database from, from when I knew the database wasn't corrupted. I chose the previous day, however in a real-world situation with an active database, I would choose a point that is as close to the point where data loss had occrued as possible.
+3. I entered a new Database name which is simply the name of the original database with `-restored` added to the end, before clicking `Review + create` and `Create`.
+4. To ensure the success of the restoration, I established a connection via Azure Data Studio and used the same query to count the number of entries in the dbo.DatabaseLog table.
+
+5. The table shows the original number of 1596 entries, showing that the restoration was a success.
+
+
 ## Geo Repliacation and Failover
+
+One feature in Azure SQL Database is Geo-Replication, which asynchronously rep;icares the primary database to a secondary region. This is a service that provides data redundancy () and high availability in the case of a regional outage or disaster, and the database can be restored from the second geographical location.
+
 
 [Back to Table of Contents](#table-of-contents)
 [Skip to Microsoft Entra Directory Integration](#microsoft-entra-directory-integration)
 
 ### Setting up Geo-Replication for Azure SQL Database
+
+
 
 ### Testing Failover and Failback
 
