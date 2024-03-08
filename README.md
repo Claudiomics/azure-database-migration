@@ -306,7 +306,15 @@ I used the Azure SQL Database backup to restore the lost data, as the production
 
 ## Geo Repliacation and Failover
 
-One feature in Azure SQL Database is Geo-Replication, which asynchronously rep;icares the primary database to a secondary region. This is a service that provides data redundancy () and high availability in the case of a regional outage or disaster, and the database can be restored from the second geographical location.
+One feature in Azure SQL Database is Geo-Replication, which asynchronously replicares the database to a secondary region. This is a service that provides data redundancy () and high availability in the case of a regional outage or disaster, and the database can be restored from the second geographical location.
+
+The primary database is the original that serves your application and handles read/write operations, and the seconday database is a read-only copy that is located in a diffrent Azure region. To minimize performacy impact, they are synchronized asychronosly.
+
+This section of the project configures the geo-replication for the production database, increading sata protection by establishing a synchronised copy of the database in a secondary region. This strategic redundancy ensures continous data availability and minimises potential downtime during unforseen disruptions.
+
+I oversee failover tests aimed at simulating real-world scenarios. A planner failover to the secondary region allows access to the secondary database. 
+
+Below are the steps I took to complete this part of the project.
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -314,9 +322,17 @@ One feature in Azure SQL Database is Geo-Replication, which asynchronously rep;i
 
 ### Setting up Geo-Replication for Azure SQL Database
 
-
+1. In the Azure Protal, I went to `Azure SQL Database` and selected the primary database that had been restored in the previous steps.
+<img width="1440" alt="Screenshot 2024-03-08 at 14 23 37" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/fe82c493-68c1-46b9-afa5-f932277d7a2c">
+2. I navigated to `Data Management` > `Replicas` and clicked `+ Create replica` to begin the process.
+3. In the Geo Replica menu I first created a new SQL Server (claudia-rep-server) and selected a geographic region that is different from my inital one for the secondary database to be located (Europe) Norway East, before selecting `Use SQL authentication` to provision the log in credentials for this server and clicking `OK`.
+4. Back in the original dialogue box, I pressed `Review + create` and `Create` to finalise the replication process. I clicked on `Go to Resource` to see the details and the 'type' showed it was 'Geo'. 
+<img width="1093" alt="Screenshot 2024-03-08 at 14 55 44" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/048c23d9-413a-40f8-a114-4a7874418559">
+<img width="1311" alt="Screenshot 2024-03-08 at 15 01 47" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/56b47398-e35c-435a-9aa2-e26c0279c42e">
 
 ### Testing Failover and Failback
+
+
 
 ## Microsoft Entra Directory Integration
 
