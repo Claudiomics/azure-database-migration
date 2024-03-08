@@ -312,7 +312,13 @@ The primary database is the original that serves your application and handles re
 
 This section of the project configures the geo-replication for the production database, increading sata protection by establishing a synchronised copy of the database in a secondary region. This strategic redundancy ensures continous data availability and minimises potential downtime during unforseen disruptions.
 
-I oversee failover tests aimed at simulating real-world scenarios. A planner failover to the secondary region allows access to the secondary database. 
+I oversee failover tests aimed at simulating real-world scenarios. A planner failover to the secondary region allows access to the secondary database.
+
+Failover is the process of switching the workload from primary to secondary region in a georeplciated environemnt and is normally performed during planned maintenance or in repsponse to a disaster in the primary region. Failover ensures high availability and business continuity by allowing applications to continue running from the seocndayr region. 
+
+Tailback is the process of reverting the workload back to the primary region after successfgul failover. 
+
+Testing failover is crucial to ensure the vaility of the faioover environemnt without impacting the procuction database/workload.
 
 Below are the steps I took to complete this part of the project.
 
@@ -332,7 +338,20 @@ Below are the steps I took to complete this part of the project.
 
 ### Testing Failover and Failback
 
+1. In the Azure Portal again, I navigated to `Azure SQL Database` and selected the SQL server associated with the primary database I wanted to failover (the original, restored one, NOT the geo-replicated one).
+2. Under `Data management` I selected `Failover Groups` and clicked `+ Add group`.
+3. I created a new name 'adworks-failover' and for `Server` I chose the secondary location server 'claudia-rep-server', before clicking `Create`.
+4. After deployment was complete, I navigated to the 'ad-works-server' and then `Failover groups` under `Data management` and clicked on the 'adworks-failover'.
+5. This page showed a map of the world with the two servers shown as primary and secondary.
+6. I initiated a planned failover by selecting `Failover` and waited till after this was complete to ensure the primary location was switched to Norway East.
 
+<img width="1440" alt="Screenshot 2024-03-08 at 18 56 32" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/cd5cbeb9-6c32-4908-bc92-e9dc9c331eb1">
+
+<img width="1440" alt="Screenshot 2024-03-08 at 18 56 18" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/5df64eec-1b24-43df-8b95-5922a621e697">
+
+7. To test the database works fine in the switched server, I connected to the server through Azure Data Studio on my production vm by copying the endpoint and pasting it into ADS and inputting the credentials I made for the geo replication process. I pressed connect and queried the database to  th
+
+7. As the failover was a success, I repeated the failover to switch the primary server back to UK South.
 
 ## Microsoft Entra Directory Integration
 
