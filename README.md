@@ -144,10 +144,9 @@ Prior to migration, firewall rules and settings needed to be configured which in
    
 <img width="1023" alt="Screenshot 2024-02-01 at 15 43 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c42c41e-7409-4fb8-a28e-fe190eaab6e8">
 
-4. I used 'localhost' as the server name, with Windows Azure authentication type. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
+3. I used 'localhost' as the server name, with Windows Azure authentication type. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
 
-
-6. To connect to the Azure SQL Database
+. To connect to the Azure SQL Database
    
 ### Schema Migration
 ### Data Migration 
