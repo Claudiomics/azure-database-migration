@@ -123,7 +123,7 @@ Prior to migration, firewall rules and settings needed to be configured which in
 
 <img width="800" alt="Screenshot 2024-02-01 at 14 53 57" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4aa98ed5-d505-4038-a9d4-09f476e76625">
 
-4. I clicked `Set Server Firewall` > `Selected Network` and pressed `Save`.
+5. I clicked `Set Server Firewall` > `Selected Network` and pressed `Save`.
 
 <img width="900" alt="Screenshot 2024-02-01 at 15 24 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/3fa443e1-814d-4dbc-bf54-0bed792137f0">
 
@@ -131,23 +131,26 @@ Prior to migration, firewall rules and settings needed to be configured which in
 7. I installed the VSCode `SQL Server` extension and used it to `+ Connection`.
 8. This prompts the entry of `Server Name`,`DB Name`, `SQL Login details` and `Display name`, however this prompted me to `Add account` so I signed into Azure using my Account details.
 <img width="469" alt="Screenshot 2024-02-01 at 15 33 02" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/e4380905-fc92-4d32-ac19-6d5d5092fc2f">
-10. I repeated the VSCode `+ Connection` steps again, and it prompted me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
+9. I repeated the VSCode `+ Connection` steps again, and it prompted me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
+    
 <img width="464" alt="Screenshot 2024-02-01 at 15 35 55" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/38f0c136-b514-46c6-a444-1f949095dcbb">
+
 <img width="635" alt="Screenshot 2024-02-01 at 15 38 01" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/b75d2398-35a5-4d4d-8e8c-9228421c1c65">
-12. Once again, I pressed `+ Connection` on VSCode and was able to connect successfully to the Azure SQL Database.
+
+11. Once again, I pressed `+ Connection` on VSCode and was able to connect successfully to the Azure SQL Database.
+
 <img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
 
 ### Preparing for Migration
 
-1. To connect to the on-premise database on my VM, I downloaded the Windows version of `Azure Data Studio`. I installed the programme and clicked `Create a desctop icon` to be able to access the app quickly.
-2. I launched `Azure Data Studio` and clicked `New Connection`.
-   
+1. To connect the on-premise database on my VM tto Azure Data Studio, I downloaded the Windows version of `Azure Data Studio`. I installed the programme and clicked `Create a desctop icon` to be able to access the app quickly.
+2. I launched `Azure Data Studio` and clicked `New Connection` and `Microsoft SQL Server` as the Server Type.
+  
 <img width="1023" alt="Screenshot 2024-02-01 at 15 43 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c42c41e-7409-4fb8-a28e-fe190eaab6e8">
 
-3. I used 'localhost' as the server name, with Windows Azure authentication type. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
+4. I clicked `Enable Trust Server Certificate` and used 'localhost' as the server name, with Windows Azure authentication type for authentication.
+5. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
 
-. To connect to the Azure SQL Database
-   
 ### Schema Migration
 ### Data Migration 
 To esnure this was completed successfully, I used the following input and outputs.
