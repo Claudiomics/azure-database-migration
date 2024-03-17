@@ -127,19 +127,15 @@ Prior to migration, firewall rules and settings needed to be configured which in
 
 <img width="900" alt="Screenshot 2024-02-01 at 15 24 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/3fa443e1-814d-4dbc-bf54-0bed792137f0">
 
-
-
 6. To connect to this Azure SQL Database, VSCode was used on my local machine.
 7. I installed the VSCode `SQL Server` extension and used it to `+ Connection`.
 8. This prompts the entry of `Server Name`,`DB Name`, `SQL Login details` and `Display name`, however this prompted me to `Add account` so I signed into Azure using my Account details.
 <img width="469" alt="Screenshot 2024-02-01 at 15 33 02" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/e4380905-fc92-4d32-ac19-6d5d5092fc2f">
-10. I repeated the VSCode `+ Connection` steps again, and it prometed me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
+10. I repeated the VSCode `+ Connection` steps again, and it prompted me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
 <img width="464" alt="Screenshot 2024-02-01 at 15 35 55" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/38f0c136-b514-46c6-a444-1f949095dcbb">
 <img width="635" alt="Screenshot 2024-02-01 at 15 38 01" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/b75d2398-35a5-4d4d-8e8c-9228421c1c65">
-
 12. Once again, I pressed `+ Connection` on VSCode and was able to connect successfully to the Azure SQL Database.
-13. <img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
-
+<img width="258" alt="Screenshot 2024-02-01 at 15 41 35" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4219ac76-7251-49a5-8243-cf3a866b6c03">
 
 ### Preparing for Migration
 
