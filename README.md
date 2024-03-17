@@ -35,7 +35,6 @@
 
 Welcome to my Multinational Retail Data Centralisation Project!
 
-
 This README.md outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this cloud-based technology. This project entails creating an Azure Virtual Machine (VM) and restoring a database before migrating the database and simulating a disataer recovery for data loss. 
 
 I have included a brief description and analysis of each section before delving into the step-by-step process I took to achieve this project. 
@@ -51,6 +50,7 @@ I hosted my database on Azure SQL as it is a cloud-based relational database ser
 The following outlines this process in a step-by-step manner:
 
 [Back to Table of Contents](#table-of-contents)
+
 [Skip to Azure SQL Database Migration](#Azure-SQL-Database-Migration)
 
 ### Provisioning the Windows Virtual Machine
@@ -102,39 +102,16 @@ The following outlines this process in a step-by-step manner:
 
 ## Azure SQL Database Migration 
 
-Azure SQL Database is an online database service that has high availability and disaster recovery capabilities. It provides automated backups to protect data from loss or corruption and minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. The encrypted data uses Transparent data encryption (TDE) which protects against unauthorised access. There are two main compute tiers: Serverless Computer tier is chosen as I don't need to pre-allocate any resources and the database automaticall scales resources up or down based on the workload demand, saving unexpected costs as you only pay for the resources I use.
+Azure SQL Database is an online database service (Platform-as-a-Service) that has high availability and disaster recovery capabilities, providing automated backups to protect data from loss or corruption and to minimise downtime, with the option to change how frequently your data is backed up and how long each backup is retained. It's security is also advanced, with it supporting Microsoft Entra ID authentication and role-based access control as well as a built-in firewall restricting access depending on IP addresses or ranges. Hosting SQL databases on the cloud elimiates the need for on-oremises hardware and maintenance.
 
-In order to transition a database onto Azure's cloud ecosystem, it needs to be migrated from the on-premise database to an Azure SQL Database, which serves as a target for migrating my on-premise database.
+To transition a database to Azure's cloud, it must be migrated from the on-premise database to Azure SQL Database, which serves as the migration target. Initially, I created an Azure SQL Database server within the Azure Portal which acted as a container for the database and promts you to set up SQL Server Authentication so one can log in from SQL Server.
 
-TTo achieve this, the powerful and user-friendly database managemet tool developed by Microsoft `Azure Data Studio` can be used to manage various data platforms including Azure SQL Database, SQL Server PostgreSQL and MySqL, among others. It it a powerful tool which simplifies database management tasks.
+To facilitate the migration of my on-premise database, I used the powerful database managemet tool developed by Microsoft - `Azure Data Studio` (ADS). ADS can be used to manage various data platforms including Azure SQL Database, SQL Server PostgreSQL and MySqL, among others. It it a powerful tool which simplifies database management tasks.
 
-These need the appropriate firewalls rules and settings, including IP address. Prior to migration, I needed to prepare for migration by ________ and connecting to Azure SQL Database. 
-
-steps were followed to ensure the database schema and data were transferred successfully using the Azure Data Studio app.
-
-The following steps outline the requirements for installing and configuring Azure Data Studio, connecting to a local SQL Server Database, connecting to an Azure SQL Database, before migrating the schema (using SQL Server Schema Compare extnesion) followed by the data (using the Azure SQL Migration extension).
-
-Firstly, the schema needed to be migrated using ______, which was then followed by the data migration.
-
-To ensure successful migration, the ____ was checked.
-
-"Azure SQL Database is a fully-managed, Platform-as-a-Service (PaaS) offering within Azure, built on the foundation of Azure SQL Server. Azure SQL Server is a cloud-based implementation of Microsoft SQL Server, a widely-used relational database management system (RDBMS). It provides a fully-managed environment for hosting SQL databases in the cloud, eliminating the need for on-premises hardware and maintenance." - collab nb
-
-The SQL Database requires a new server which will act as a container for the database and requires sql server authentication to be set up so one can log in from SQL Server.
-
-Firstly, the local database is connected to, and then the Azure SQL Database that's freshly created. This requires a few different takes to connect, as the firewall rules need to be set n Microsoft Azure portal. After connection, the
-
-"By default, Azure SQL Database is configured to deny all public connections. To connect to your database from outside of Azure, you will need to enable public access by configuring a firewall rule that allows traffic from your client IP address. To do this, first navigate to your Azure SQL Database in the Azure portal. Click on the Set server firewall tab on the top middle of the screen.
-
-Public network access to a SQL Server instance is controlled by the Public Network Access setting. This setting determines whether traffic from the public internet is allowed to reach your SQL Server instance.
-
-By default, the Public Network Access setting is set to Deny, which means that only traffic from within the Azure network is allowed to reach your SQL Server instance. To allow traffic from the public internet to reach your SQL Server instance, you can change the Public Network Access setting to Selected networks."
-
-I then had to connect to the on-premise db from Azure Data Studio. 
-
-The follwing outlines this process in more detail:
+Prior to migration, firewall rules and settings needed to be configured which includes allowing access from the production environment's virtual machine's IP address to Azure SQL Database (as by defualt, Azure SQL Database is configured to seny all public connections). The following steps outline the requirements for installing and configuring Azure Data Studio, connecting to the local SQL Server Database from Azure Data Studio, connecting to the Azure SQL Database (using SQL Server Authenitcation), before migrating the schema (using SQL Server Schema Compare extnesion) followed by the data (using the Azure SQL Migration extension). To ensure data was migrated properly, SQL queries were made to check the data was transferred fully.
 
 [Back to Table of Contents](#table-of-contents)
+
 [Skip to Backing up the On-Premise Database](#Backing-up-the-On-Premise-Database)
 
 ### Setting Up Azure SQL Database
