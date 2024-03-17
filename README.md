@@ -2,7 +2,7 @@
 
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
+![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20serve
 
 # Table of Contents
 1. [Introduction](#introduction)
@@ -38,6 +38,11 @@ Welcome to my Multinational Retail Data Centralisation Project!
 This README.md outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this cloud-based technology. This project entails creating an Azure Virtual Machine (VM) and restoring a database before migrating the database and simulating a disataer recovery for data loss. 
 
 I have included a brief description and analysis of each section before delving into the step-by-step process I took to achieve this project. 
+
+Here is an overview of the entire process:
+
+<img width="847" alt="Screenshot 2024-03-17 at 23 45 14" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/d837fe6e-0d1a-4d0c-90f5-171aa97287ab">
+r&logoColor=white)
 
 ## Production Environment Setup
 
