@@ -197,17 +197,11 @@ Prior to migration, firewall rules and settings needed to be configured to allow
 
 ## Data Backup and Restore
 
-Before creating a development environment for this database, I had to ensure the stored data in the production database is secure. The production database is for storing real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database. Maintains the integrity of the live data.
+Before creating a development environment for this database, I had to ensure the stored data in the production database was secure. The production database is for storing and presenting real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database, effectively maintaining the integrity of the live data.
 
--- I backed up the on-premise database by generating a full backup of the production database hosted on the Windows VM, and stored it in the backup file of the VM, before storing it in an Azure's blob. Then, I restored the database in a development environemnt and configured the settings for automatic backups. -- 
+The current Windows VM holds the production environemnt and database and this needed to be backed up in a way that would allow database restoration in a development environment. I achieved this by generating a full backup of the database (capturing the entire database at a specific point) and storiing in a backup file on the Virtual Machine, before transferring it to Azure Blob storage. I then configred a second virtual machine as the development environement before restoring the database from the blob onto this second VM and configured the setting to run automatic backups. 
 
--- Data loss or corruption due to unexpected events or cyber threats can have massive negative implications to organisations, meaning backups are an essential aspect of managing databases. Azure SQL Database is used as a 'repository' for these companies who regularly backup and restore their databases using this system to ensure the quick restoration of data if required and minimise downtime. 
-
-"In this example, our Windows VM holds our current production environment and database. We want to perform this backup, so we can later restore the database to a development environment where our developers can work on testing and developing new features. For creating a backup that can be restored to a development environment, we will choose the Full backup type."
-
-Backing up a database is the creation of a copy of the database at a set point in time, and there are full backups (capturing the entire database at a specific point), a differential backup (captures just the new changes made since last full backup) and transaction log backups (). 
-
-Finally, I created an automated backup solution for the development environment, which safeguards any work that is done in future and aneables swift recovery from errors or data loss. There are multiple choices of the times each data backup occurs, with varying cost although it is automatically set to save every 24 hours. 
+This system allows the quick restoration of data in the case of data loss or corruption due to unexpected events of cyber attacks, with minimum downtime. Having this system in place with regular backups minimises any negative implications to organisations facing data loss issues.
 
 The following steps were taken to achieve this:
 
