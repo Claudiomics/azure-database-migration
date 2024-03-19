@@ -173,7 +173,27 @@ Prior to migration, firewall rules and settings needed to be configured to allow
 5. I applied all the changes and the schema was visible in the Azure SQL database server after I refreshed the `Tables` node. However since the data hadn't been migrated yet, the SQL Query 'SELECT TOP 1000' showed empty.
 
 ### Data Migration 
-To esnure this was completed successfully, I used the following input and outputs.
+
+1. On Azure Data Studio I installed the `Azure SQL Migration` extension.
+2. I right clicked on the local SQL Server database and selected `Manage`.
+3. I selected `Azure SQL Migration` under `General` and clicked `Migrate to Azure SQL`.
+4. The Azure SQL Database was selected as the target and confirmed the database to be migrated.
+5. To configure the Azure SQL target, login credentials were required and the right target database selected.
+6. An Azure Database Migration Service was required to configure the database migration, so this was set up before proceeding. I went to the Azure Portal and searched `Azure Database Migration Services` and clicked `Create`.
+7. To finish setting up this resource, I used the same recource group as my VM and the same geographical location before selecting `Create`.
+8. Back on Azure Data Studio, the Azure Database Migration Service had to be registered, so I downloaded and installed the latest version of `Integration Runtime` from the provided link.
+9. To finish registration, I copied and pasted one of the 'keys' provided by Azure Data Studio and clicked `Launch Configurtion Manager` and `Next`.
+10. I selected the tables to migrate (all) and clicked `Update`.
+11. I clicked `Run validation` which ensured the settings were correct and identifies any potential issues for the actual migration process.
+
+<img width="1195" alt="Screenshot 2024-02-03 at 18 08 28" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/40e34d32-55c4-4608-a7b3-44bcee5fb63d">
+
+12. My check showed there were no errors so I pressed `Start Migration`.
+
+<img width="1395" alt="Screenshot 2024-02-03 at 18 09 48" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/89373759-622d-4aff-bc46-69d932754f07">
+
+13. To check there was data in the tables after the migration status read complete, I used `Select Top 1000` which showed the data within the tables.
+14. I also checked the Azure Portal to see my database was successfully in the cloud.
 
 ## Data Backup and Restore
 
