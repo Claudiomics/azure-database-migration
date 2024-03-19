@@ -112,7 +112,7 @@ To transition a database to Azure's cloud, it must be migrated from the on-premi
 
 To facilitate the migration of my on-premise database, I used the powerful database managemet tool developed by Microsoft - `Azure Data Studio` (ADS). ADS can be used to manage various data platforms including Azure SQL Database, SQL Server PostgreSQL and MySqL, among others. It it a powerful tool which simplifies database management tasks.
 
-Prior to migration, firewall rules and settings needed to be configured which includes allowing access from the production environment's virtual machine's IP address to Azure SQL Database (as by defualt, Azure SQL Database is configured to seny all public connections). The following steps outline the requirements for installing and configuring Azure Data Studio, connecting to the local SQL Server Database from Azure Data Studio, connecting to the Azure SQL Database (using SQL Server Authenitcation), before migrating the schema (using SQL Server Schema Compare extnesion) followed by the data (using the Azure SQL Migration extension). To ensure data was migrated properly, SQL queries were made to check the data was transferred fully.
+Prior to migration, firewall rules and settings needed to be configured to allow connections to Azure SQL Database as, by default, it is configured to deny all public connections. To use Azure Data Studio for the local SQL Server database, a connected was established. Then to be able to move the data onto Azure SQL Database, this first needed to be created in the portal and then the IP address from the virtual machine added to the firewall rules to allow the successful connection from Azure Data Studio to the Azure SQL Database using SQL Server Authentication. The schema was then migrated using SQL Server Schema Compare extension, followed by the data using the Azure SQL Migration extension. To ensure data was migrated properly, SQL queries were made to check the data was transferred fully.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -163,7 +163,14 @@ Prior to migration, firewall rules and settings needed to be configured which in
 
 ### Schema Migration
 
+1. The `SQL Server Schema Compare` Azure Data Studio extension was installed.
+2. I clicked on the Servers icon, right clicked the local server and selected `Schema Compare`.
+3. I configured the source connection to the local SQL Server database and target connection to Azure SQL Database > `OK`.
+4. I clicked `Compare` at the top of the page and chose to migrate all the schema across to the Azure SQL Database Server.
+ 
+<img width="1201" alt="Screenshot 2024-02-03 at 18 06 30" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/4cd74062-5fb3-4f85-a6e2-03794d2c2cf1">
 
+5. I applied all the changes and the schema was visible in the Azure SQL database server after I refreshed the `Tables` node. However since the data hadn't been migrated yet, the SQL Query 'SELECT TOP 1000' showed empty.
 
 ### Data Migration 
 To esnure this was completed successfully, I used the following input and outputs.
