@@ -328,21 +328,30 @@ Below is the step-by-step process I took to complete this part of the project.
 
 <img width="1440" alt="Screenshot 2024-03-08 at 18 56 18" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/5df64eec-1b24-43df-8b95-5922a621e697">
 
-7. To test the database works fine in the switched server, I connected to the server through Azure Data Studio on my production vm by copying the endpoint and pasting it into ADS and inputting the credentials I made for the geo replication process. I pressed connect and queried the database to  th
-
+7. To test the database works fine in the switched server, I connected to the server through Azure Data Studio on my production vm by copying the endpoint and pasting it into ADS and inputting the credentials I made for the geo replication process. I pressed connect and queried the database to  check the database was working well.
 7. As the failover was a success, I repeated the failover to switch the primary server back to UK South.
 
 ## Microsoft Entra Directory Integration
 
-To manage who can access the data, I integrated Microsoft Entra Directory with my Azure SQL Database setup. In this section, I 
+Microsoft Entra ID is a cloud-based identity and access management system which can be configured by the administrator account to manage users, groups and applications and this can be used to manage access to Azure SQL Database too. Features such as user authenication and access management help keep organisations' data secure and secures data from data modifications from unauthorised personel.
 
-To ensure only set individuals or groups are able to access this resource, 
+To manage who can access the data, I first created an admin account which holds the authority to manage and oversee the production database. Enabling Microsfot Entra ID authentication for the SQL Server hosting the production database was essential. Additionally, I ensured that Azure Data Studio could establish a connection using Microsoft Enterprise credentials. I then go on to provision database reader users with read-only access so the data can't be corrupted by individuals without clearance. 
+
+The following steps outline this process in more details.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Configuring Microsoft Entra ID for Azure SQL Database
 
+1. Within the Azure Portal I opened the SQL Server hosting my primary database.
+2. Under `Security` I clicked on `Microsoft Entra`.
+
+
+3. I clicked `Set admin` to assign a Microsoft Entra user or group as the Microsoft Entra admin for the SQL Server. 
+4. 
+
 ### Creating a Database Reader User
 
-## Licence Information
 
 
 
