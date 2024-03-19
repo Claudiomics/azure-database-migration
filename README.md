@@ -295,24 +295,14 @@ The following segments outline the steps I took:
 
 ## Geo Repliacation and Failover
 
-One feature in Azure SQL Database is Geo-Replication, which asynchronously replicares the database to a secondary region. This is a service that provides data redundancy () and high availability in the case of a regional outage or disaster, and the database can be restored from the second geographical location.
+One feature in Azure SQL Database is Geo-Replication, which asynchronously replicates a chosen database to a secondary region. This is a service that provides data redundancy and high availability in the case of a regional outage or disaster, and the database can be restored from the second geographical location. The database in the primary location is the original, and handles read and write operations, whereas the database in the secondary location is a read-only copy. Failover is the process of switching the workload from the primary to secondary region and a tailback is the reverse process where the workload is reverted back to the primary region.
 
-The primary database is the original that serves your application and handles read/write operations, and the seconday database is a read-only copy that is located in a diffrent Azure region. To minimize performacy impact, they are synchronized asychronosly.
+This section of the project configures the geo-replication of the database, increading data protection by establishing a copy of the database in a secondary region. I set up the access setting in the next section of this project. I completed a failover test, connected to the server in the new geographical location from Azure Data Studio and completed an SQL Query to test the database works. I then switched it back to the primary region by preforming a tailback on the Azure Portal.
 
-This section of the project configures the geo-replication for the production database, increading sata protection by establishing a synchronised copy of the database in a secondary region. This strategic redundancy ensures continous data availability and minimises potential downtime during unforseen disruptions.
-
-I oversee failover tests aimed at simulating real-world scenarios. A planner failover to the secondary region allows access to the secondary database.
-
-Failover is the process of switching the workload from primary to secondary region in a georeplciated environemnt and is normally performed during planned maintenance or in repsponse to a disaster in the primary region. Failover ensures high availability and business continuity by allowing applications to continue running from the seocndayr region. 
-
-Tailback is the process of reverting the workload back to the primary region after successfgul failover. 
-
-Testing failover is crucial to ensure the vaility of the faioover environemnt without impacting the procuction database/workload.
-
-Below are the steps I took to complete this part of the project.
-
+Below is the step-by-step process I took to complete this part of the project.
 
 [Back to Table of Contents](#table-of-contents)
+
 [Skip to Microsoft Entra Directory Integration](#microsoft-entra-directory-integration)
 
 ### Setting up Geo-Replication for Azure SQL Database
