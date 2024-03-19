@@ -33,13 +33,13 @@
 
 ## Introduction 
 
-Welcome to my Multinational Retail Data Centralisation Project!
+Welcome to my Azure Database Migration Project!
 
 This README.md outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this cloud-based technology. This project entails creating an Azure Virtual Machine (VM) and restoring a database before migrating the database and simulating a disataer recovery for data loss. 
 
-I have included a brief description and analysis of each section before delving into the step-by-step process I took to achieve this project. 
+I have included a brief description and analysis of each section before delving into more detail with the step-by-step process I took to achieve this project.
 
-Here is an overview of the entire process:
+Here is a brief overview of the entire process:
 
 <img width="847" alt="Screenshot 2024-03-17 at 23 45 14" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/d837fe6e-0d1a-4d0c-90f5-171aa97287ab">
 
@@ -154,8 +154,17 @@ Prior to migration, firewall rules and settings needed to be configured which in
 
 4. I clicked `Enable Trust Server Certificate` and used 'localhost' as the server name, with Windows Azure authentication type for authentication.
 5. I selected AdventureWorks2022 as the database > `Connect` > `Enable Trust Certificate`.
+6. I then connected to the Azure SQL Database by clicking `Server` within Azure Data Studio and selected `New Connection`.
+7. I selected `Miscrosoft SQL Server` as the server type and entered the connection details like Server Name and SQL Login details that were set up when creating the Azure SQL Server in the Azure Portal. I selected the database from the dropdown menu and clicked `Connect` but was met with an error message explaining the virtual machine can't access the SQL Server as the VM IP Address wasn't added to the SQL Server firewall.
+8. To overcome this, I navigated to the Virtual Machines service page on the Portal and copied the `Public IP address` from the Overview page.
+9. I then went to the SQL Servers page and clicked on the one I wanted to host my Azure SQL Database on, before clicking on the `Networking` subsection on the left hand side of the page.
+10. I selected `Add a firewall rule` and pasted the virtual machine IP address on the `Start IP` and `End IP` fields and then saved my changes. This allowed the VM to connect to the SQL server.
+11. I went back to Azure Data Studio and reconnected to the SQL Server and this time the connection was a success.
 
 ### Schema Migration
+
+
+
 ### Data Migration 
 To esnure this was completed successfully, I used the following input and outputs.
 
