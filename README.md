@@ -258,23 +258,14 @@ SECRET = '[Access Key]'`
 
 Microsoft Azure has great disaster recovery capabilities to minimize downtime, protect data, ensure compliance and adapt to cyber security threats.
 
-Azure offers a wide range of disaster recovery capabilities designed to protect data, applications and services running on the platform. 
+This section of the project focuses on simulating the loss of data in a production environemnt, showing the process of being able to recover the lost or corrupt data from the development environment. In a real-life setting, this testing would be completed using the development environment, as deleting any live data would be really risky and could have a negative impact if the test didn't work. This simulation is using my initial produciton environment VM as it simulates the real-life data loss scenario and the data isn't critical. I noted down the exact data that I corrupted the data so I could set the recovery date and time to a time the loss definietly occured before.
 
-This section of the project focuses on simulating the loss of data in a production environemnt, and being able to recover the lost or corrupt data from the development environment. The purpose of this testing is 
-
-Usually, in a real-life setting, this testing is completed using the development environment as deleting any data which is live can have negative impact if the data isn't being 
-
-This is being complete using the production environment using my initial VM, as it simulated a real-life data loss scenario and the data isn't critical. I noted down the exact data that I corrupted or deleted so I could check these data after recovery. 
-
-In the real world it's improtant to documentation this process, as the exact steps can be followed to reverse any negative outcomes from a real-life incidents and minimize the impact on critical business operations.
-
-Additioanlly, communicating to stakeholders when testing is crucial to build trust and prevent any confusion and be transparent. 
+It's improtant to documentation this process so the exact steps can be followed to reverse any negative outcomes from real-life incidents and minimize the impact on critical business operations. Additioanlly, communicating to stakeholders when testing is crucial to build trust and prevent any confusion. 
 
 The following segments outline the steps I took:
 
-I used the Azure SQL Database backup to restore the lost data, as the production environment held the full database and fully uploads it to Azure weekly.
-
 [Back to Table of Contents](#table-of-contents)
+
 [Skip to Geo Repliacation and Failover](#geo-replication-and-failover)
 
 ### Mimicing Data Loss in Production Environment
