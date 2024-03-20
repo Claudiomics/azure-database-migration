@@ -35,19 +35,15 @@
 
 Welcome to my Azure Database Migration Project!
 
-This README outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this technology. 
+This README outlines the process of setting up a cloud-based database system on Microsoft Azure, showcasing my skills in this technology.
 
-This project entails creating an Azure Virtual Machine (VM) and restoring a database onto it before migrating the database onto Azure SQL Database as the production environment. I then go on to create a second Azure VM as a development environment and backing the primary database up there before setting up automatic backups. I then simulated a disaster recovery solution by deleting some data from the production environment and recovering it from the backup on the development environment. After successful recovery, I set up geo-replication to safeguard the database in case of regional downtime and used a failover and tailback to transfer the working server over to the secondary location and back again. To control user access to the database, I made myself the administrator account, and made a and configured a read-only account which didn't have access to edit the data in the database.
+This project entails creating an Azure Virtual Machine (VM) and restoring a database onto it before migrating the database onto Azure SQL Database as the production environment. I then go on to create a second Azure VM as a development environment and backing the primary database up there before setting up automatic backups. I then simulated a disaster recovery solution by deleting some data from the production environment and recovering it from the backup on the development environment. After successful recovery, I set up geo-replication to safeguard the database in case of regional downtime and used a failover and tailback to transfer the working server over to the secondary location and back again. To control user access to the database, I made myself an administrator account, and configured a read-only account which didn't have access to edit the data in the database.
 
 I have included a brief description and analysis of each section before delving into more detail with the step-by-step process I took to achieve this project.
 
-Here is a brief overview of the entire process:
-
-<img width="847" alt="Screenshot 2024-03-17 at 23 45 14" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/d837fe6e-0d1a-4d0c-90f5-171aa97287ab">
-
 Here is the UML diagraph of the architecture for this project:
 
-<img width="1103" alt="Screenshot 2024-03-20 at 00 46 07" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c93ce54-17d9-4fae-af3f-349e67c83c00">
+<img width="1094" alt="Screenshot 2024-03-20 at 13 34 42" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/c9f8517f-25ba-4150-b68c-4d1388b83df5">
 
 ## Production Environment Setup
 
