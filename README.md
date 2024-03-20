@@ -361,8 +361,29 @@ The following steps outline this process in more details.
 
 ### Creating a Database Reader User
 
+1. I created a new database reader user by navigating to `Microsoft Entra ID` homepage within the Azure Portal and selecting `+ Add`.
+2. I named them '_DB_Reader' and used `Auto-generate password`.
+3. I navigated to Azure Data Studio and ensured I was connected to the ad-works-server hosting my primary database and selected `New Query` within the target database.
+4. I executed the following query to grant read-only access to the _DB_Reader user I just created.
+`
+CREATE USER [_DB_Reader@aicoreusers.onmicrosoft.com] FROM EXTERNAL PROVIDER;
+ALTER ROLE db_datareader ADD MEMBER [_DB_Reader@aicoreusers.onmicrosoft.com]; 
+`
+<img width="1440" alt="Screenshot 2024-03-20 at 00 24 44" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/0c1dd55a-7958-49ca-b89b-6548300cf981">
+
+5. I checked the access level by disconnecting and re-connecting to the server using the _DB_Reader user credentials (using `Microsoft Entra ID- Universal with MFA support` and click `Add Account` under `Accounts`).
+6. I logged in using '_DB_Reader@aicoreusers.onmicrosoft.com' and the password provded. I had to download the `Microsoft Authenticator` app on my phone and verify myself before I was able to connect.
+7. The following images show this user is able to view the data in the databases but can't edit them.
+<img width="1440" alt="Screenshot 2024-03-20 at 00 39 21" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/3c41c5ed-dfdc-4688-8eca-ed21bad1ecfd">
+
+<img width="1397" alt="Screenshot 2024-03-20 at 00 41 13" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c88b2d4-fd5a-46f3-b104-c48d4db1138f">
+
+<img width="1399" alt="Screenshot 2024-03-20 at 00 43 14" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/57a968da-8c89-47a6-aa68-7a03cbd548cb">
+
+[Back to Table of Contents](#table-of-contents)
+
+### Conclusion
 
 
-
-
+[Back to Table of Contents](#table-of-contents)
 
