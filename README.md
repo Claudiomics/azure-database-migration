@@ -266,11 +266,11 @@ SECRET = '[Access Key]'`
 
 Microsoft Azure has great disaster recovery capabilities to minimize downtime, protect data, ensure compliance and adapt to cyber security threats.
 
-This section of the project focuses on simulating the loss of data in a production environemnt, showing the process of being able to recover the lost or corrupt data from the development environment. In a real-life setting, this testing would be completed using the development environment, as deleting any live data would be really risky and could have a negative impact if the test didn't work. This simulation is using my initial produciton environment VM as it simulates the real-life data loss scenario and the data isn't critical. I noted down the exact data that I corrupted the data so I could set the recovery date and time to a time the loss definietly occured before.
+This section of the project focuses on simulating the loss of data in a production environemnt, showing the process of being able to recover the lost or corrupt data from the development environment. In a real-life setting, this _testing_ would be completed using the development environment, as deleting any live data would be risky and could have a negative impact if the test didn't work. This simulation is using my initial produciton environment VM as it simulates the real-life data loss scenario and the data isn't critical. I noted down the data that I corrupted the data so I could set the recovery date and time to before the loss occured.
 
 It's improtant to documentation this process so the exact steps can be followed to reverse any negative outcomes from real-life incidents and minimize the impact on critical business operations. Additioanlly, communicating to stakeholders when testing is crucial to build trust and prevent any confusion. 
 
-The following segments outline the steps I took:
+The following process outline the steps I took:
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -316,11 +316,15 @@ Below is the step-by-step process I took to complete this part of the project.
 ### Setting up Geo-Replication for Azure SQL Database
 
 1. In the Azure Protal, I went to `Azure SQL Database` and selected the primary database that had been restored in the previous steps.
+2. 
 <img width="1440" alt="Screenshot 2024-03-08 at 14 23 37" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/fe82c493-68c1-46b9-afa5-f932277d7a2c">
-2. I navigated to `Data Management` > `Replicas` and clicked `+ Create replica` to begin the process.
-3. In the Geo Replica menu I first created a new SQL Server (claudia-rep-server) and selected a geographic region that is different from my inital one for the secondary database to be located (Europe) Norway East, before selecting `Use SQL authentication` to provision the log in credentials for this server and clicking `OK`.
-4. Back in the original dialogue box, I pressed `Review + create` and `Create` to finalise the replication process. I clicked on `Go to Resource` to see the details and the 'type' showed it was 'Geo'. 
+
+3. I navigated to `Data Management` > `Replicas` and clicked `+ Create replica` to begin the process.
+5. In the Geo Replica menu I first created a new SQL Server (claudia-rep-server) and selected a geographic region that is different from my inital one for the secondary database to be located (Europe) Norway East, before selecting `Use SQL authentication` to provision the log in credentials for this server and clicking `OK`.
+7. Back in the original dialogue box, I pressed `Review + create` and `Create` to finalise the replication process. I clicked on `Go to Resource` to see the details and the 'type' showed it was 'Geo'.
+
 <img width="1093" alt="Screenshot 2024-03-08 at 14 55 44" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/048c23d9-413a-40f8-a114-4a7874418559">
+
 <img width="1311" alt="Screenshot 2024-03-08 at 15 01 47" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/56b47398-e35c-435a-9aa2-e26c0279c42e">
 
 ### Testing Failover and Failback
@@ -343,9 +347,7 @@ Below is the step-by-step process I took to complete this part of the project.
 
 Microsoft Entra ID is a cloud-based identity and access management system which can be configured by the administrator account to manage users, groups and applications and this can be used to manage access to Azure SQL Database too. Features such as user authenication and access management help keep organisations' data secure and secures data from data modifications from unauthorised personel.
 
-To manage who can access the data, I first created an admin account which holds the authority to manage and oversee the production database. Enabling Microsfot Entra ID authentication for the SQL Server hosting the production database was essential. Additionally, I ensured that Azure Data Studio could establish a connection using Microsoft Enterprise credentials. I then go on to provision database reader users with read-only access so the data can't be corrupted by individuals without clearance. 
-
-"Discuss the configuration process, role definitions, and the creation of both admin and reader accounts."
+To manage who can access the data, I first made my account an admin account which holds the authority to manage and oversee the production database. Additionally, I ensured that Azure Data Studio could establish a connection using Microsoft Enterprise credentials as this re-set my account to admin status. I then go on to provision a database reader user with read-only access so the data can't be corrupted by individuals without clearance.
 
 The following steps outline this process in more details.
 
@@ -358,11 +360,11 @@ The following steps outline this process in more details.
 
 <img width="1433" alt="Screenshot 2024-03-19 at 23 50 58" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/280f51a9-e96f-4f4a-98d3-30364508b753">
 
-4. I clicked `Set admin` to assign a Microsoft Entra user or group as the Microsoft Entra admin for the SQL Server and selected my account as the admin for the database and saved my changes.
+4. I clicked `Set admin` to assign a Microsoft Entra user or group as the Microsoft Entra admin for the SQL Server and selected my account as the admin for the database before saving my changes.
  
  <img width="1438" alt="Screenshot 2024-03-19 at 23 54 40" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/f70c17d8-4b98-4593-9d05-3fddeead2c20">
 
-5. Using Azure Data Studio on my VM, I disconnected from my this server and then re-connected using `Microsoft Entra ID- Universal with MFA support` instead of `SQL Login` like before.
+5. Using Azure Data Studio on my VM, I disconnected from this server and then re-connected using `Microsoft Entra ID- Universal with MFA support` instead of `SQL Login` like before.
 7. I added my account by clicking `Add an account` which re-directed me to log in to Azure and then I could successfully connect.
  <img width="1398" alt="Screenshot 2024-03-20 at 00 02 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/ce044b60-5d53-4835-92d7-50eb70793fea">
 
@@ -382,8 +384,8 @@ ALTER ROLE db_datareader ADD MEMBER [_DB_Reader@aicoreusers.onmicrosoft.com];
 <img width="1440" alt="Screenshot 2024-03-20 at 00 24 44" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/0c1dd55a-7958-49ca-b89b-6548300cf981">
 
 5. I checked the access level by disconnecting and re-connecting to the server using the _DB_Reader user credentials (using `Microsoft Entra ID- Universal with MFA support` and click `Add Account` under `Accounts`).
-6. I logged in using '_DB_Reader@aicoreusers.onmicrosoft.com' and the password provded. I had to download the `Microsoft Authenticator` app on my phone and verify myself before I was able to connect.
-7. The following images show this user is able to view the data in the databases but can't edit them.
+6. I logged in using '_DB_Reader@aicoreusers.onmicrosoft.com' and the password provded. I had to download the `Microsoft Authenticator` app on my phone and verify the account before I was able to connect.
+7. The following images show this user is able to view the data in the databases but is unable to edit them.
 <img width="1440" alt="Screenshot 2024-03-20 at 00 39 21" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/3c41c5ed-dfdc-4688-8eca-ed21bad1ecfd">
 
 <img width="1397" alt="Screenshot 2024-03-20 at 00 41 13" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c88b2d4-fd5a-46f3-b104-c48d4db1138f">
