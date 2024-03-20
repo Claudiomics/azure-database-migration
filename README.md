@@ -141,6 +141,7 @@ Prior to migration, firewall rules and settings needed to be configured to allow
 7. I installed the VSCode `SQL Server` extension and used it to `+ Connection`.
 8. This prompts the entry of `Server Name`,`DB Name`, `SQL Login details` and `Display name`, however this prompted me to `Add account` so I signed into Azure using my Account details.
 <img width="469" alt="Screenshot 2024-02-01 at 15 33 02" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/e4380905-fc92-4d32-ac19-6d5d5092fc2f">
+
 9. I repeated the VSCode `+ Connection` steps again, and it prompted me to add a firewall rule. I clicked on the promt and it autofilled my local machine's IP address into the 'Start' and 'Finish' points.
     
 <img width="464" alt="Screenshot 2024-02-01 at 15 35 55" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/38f0c136-b514-46c6-a444-1f949095dcbb">
@@ -203,15 +204,16 @@ Prior to migration, firewall rules and settings needed to be configured to allow
 
 ## Data Backup and Restore
 
-Before creating a development environment for this database, I had to ensure the stored data in the production database was secure. The production database is for storing and presenting real customer data and the development database is for experimental testing. By provisioning a development database, it ensures there will be no accidental data loss or corruption to the production database, effectively maintaining the integrity of the live data.
+The production database is for storing and presenting real customer data and the development database is for experimental testing. Provisioning a development database with the database backed up ensures there will be no accidental data loss or corruption to the production database, effectively maintaining the integrity of the live data. 
 
-The current Windows VM holds the production environemnt and database and this needed to be backed up in a way that would allow database restoration in a development environment. I achieved this by generating a full backup of the database (capturing the entire database at a specific point) and storiing in a backup file on the Virtual Machine, before transferring it to Azure Blob storage. I then configred a second virtual machine as the development environement before restoring the database from the blob onto this second VM and configured the setting to run automatic backups. 
+The current Windows VM holds the production database and this needed to be backed up in a way that would allow database restoration in a development environment. I achieved this by generating a full backup of the database (capturing the entire database at a specific point in time) and storing it in a backup file on the Virtual Machine, before transferring it to Azure Blob storage. I then configred a second virtual machine as the development environement before restoring the database from the blob onto this second VM and configured the settings to run automatic backups. 
 
 This system allows the quick restoration of data in the case of data loss or corruption due to unexpected events of cyber attacks, with minimum downtime. Having this system in place with regular backups minimises any negative implications to organisations facing data loss issues.
 
 The following steps were taken to achieve this:
 
 [Back to Table of Contents](#table-of-contents)
+
 [Skip to Disaster Recovery Simulation](#disaster-recovery-simulation)
 
 ### Backing up the On-Premise Database
@@ -231,8 +233,8 @@ The following steps were taken to achieve this:
 ### Restoring the Database on Development Environment
 
 1. I provisioned another Azure Windows VM to use as a development evnironment, following the [same method as before](#Provisioning-the-Windows-Virtual-Machine), and named my machine `development-vm`, before connecting to it using Microsoft Remote Desktop.
-2. I connected to the machine, logged onto Microsoft Azure and downloaded the `` file from Blob storage. I copied this file from where it was automatically saved to the filepath `f` so I could use it for creating the backup.
-3. On my development-vm, I installed and downloaded SQL Server Management as shown [before](#SQL-Server-and-SSMS), and opened it.
+2. I connected to the machine, logged onto Microsoft Azure and downloaded the database file from Blob storage. I copied this file from where it was automatically saved in the `Downloads` folder and pasted it to the filepath `C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\` so I could use it for creating the backup. 
+3. On my development-vm, I installed and downloaded SQL Server  and SSMS as shown [before](#SQL-Server-and-SSMS), and opened it.
 4. I connected to the server and right clicked the database > `Restore` > `Device`, selected the .bak file from the backup folder and clicked `Add`.
 <img width="378" alt="Screenshot 2024-03-01 at 17 05 12" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6da907c5-a9bc-4e2a-90f9-12cdaac07195">
 <img width="989" alt="Screenshot 2024-03-01 at 16 24 04" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/11c74607-8f08-41db-bac7-6c41e739e0d8">
