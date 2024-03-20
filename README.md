@@ -344,11 +344,20 @@ The following steps outline this process in more details.
 ### Configuring Microsoft Entra ID for Azure SQL Database
 
 1. Within the Azure Portal I opened the SQL Server hosting my primary database.
-2. Under `Security` I clicked on `Microsoft Entra`.
+2. Under `Settings` I clicked on `Microsoft Entra`.
 
+<img width="1433" alt="Screenshot 2024-03-19 at 23 50 58" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/280f51a9-e96f-4f4a-98d3-30364508b753">
 
-3. I clicked `Set admin` to assign a Microsoft Entra user or group as the Microsoft Entra admin for the SQL Server. 
-4. 
+4. I clicked `Set admin` to assign a Microsoft Entra user or group as the Microsoft Entra admin for the SQL Server and selected my account as the admin for the database and saved my changes.
+ 
+ <img width="1438" alt="Screenshot 2024-03-19 at 23 54 40" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/f70c17d8-4b98-4593-9d05-3fddeead2c20">
+
+5. Using Azure Data Studio on my VM, I disconnected from my this server and then re-connected using `Microsoft Entra ID- Universal with MFA support` instead of `SQL Login` like before.
+7. I added my account by clicking `Add an account` which re-directed me to log in to Azure and then I could successfully connect.
+ <img width="1398" alt="Screenshot 2024-03-20 at 00 02 17" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/ce044b60-5d53-4835-92d7-50eb70793fea">
+
+9. I tested my read and write access by right clicking on one of the tables and selecting `Edit`. 
+<img width="1390" alt="Screenshot 2024-03-20 at 00 03 43" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/45c2492d-8192-4bc6-be0c-21783b12b9de">
 
 ### Creating a Database Reader User
 
