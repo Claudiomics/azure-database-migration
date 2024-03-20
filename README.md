@@ -95,7 +95,7 @@ The following outlines this process in a step-by-step manner:
 
 ### Creating the Production Database
 
-1.	Firstly, I downloaded the Production Database AdventureWorks from the file provided by Mcirosoft onto my VM. (link https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak )
+1.	Firstly, I downloaded the Production Database AdventureWorks from the [file](https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak) provided by Mcirosoft onto my VM.
 2.	I copied the file and put it into ` C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup` on the VM.
 3.	With the SQL Server connection active on SSMS, I right-clicked on `Databases` in Object Explorer and chose `Restore Database`.
 4.	For the source, I choose `Device`, `…` and `Add` to select the .bak backup file that’s in the Backup folder. 
