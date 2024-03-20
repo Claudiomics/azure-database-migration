@@ -43,6 +43,10 @@ Here is a brief overview of the entire process:
 
 <img width="847" alt="Screenshot 2024-03-17 at 23 45 14" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/d837fe6e-0d1a-4d0c-90f5-171aa97287ab">
 
+<img width="1103" alt="Screenshot 2024-03-20 at 00 46 07" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/6c93ce54-17d9-4fae-af3f-349e67c83c00">
+
+"UML diagram for the architecture" ^
+
 ## Production Environment Setup
 
 In a production environment, a database can be established and made available for client presentation. On the other hand, the development environment serves as an isolated space where developers can test and create new features which are only transferred to the production environment after testing to ensure functionality and prevent accidental data loss.
@@ -337,6 +341,8 @@ Microsoft Entra ID is a cloud-based identity and access management system which 
 
 To manage who can access the data, I first created an admin account which holds the authority to manage and oversee the production database. Enabling Microsfot Entra ID authentication for the SQL Server hosting the production database was essential. Additionally, I ensured that Azure Data Studio could establish a connection using Microsoft Enterprise credentials. I then go on to provision database reader users with read-only access so the data can't be corrupted by individuals without clearance. 
 
+"Discuss the configuration process, role definitions, and the creation of both admin and reader accounts."
+
 The following steps outline this process in more details.
 
 [Back to Table of Contents](#table-of-contents)
@@ -381,9 +387,3 @@ ALTER ROLE db_datareader ADD MEMBER [_DB_Reader@aicoreusers.onmicrosoft.com];
 <img width="1399" alt="Screenshot 2024-03-20 at 00 43 14" src="https://github.com/Claudiomics/azure-database-migration/assets/149532217/57a968da-8c89-47a6-aa68-7a03cbd548cb">
 
 [Back to Table of Contents](#table-of-contents)
-
-### Conclusion
-
-
-[Back to Table of Contents](#table-of-contents)
-
